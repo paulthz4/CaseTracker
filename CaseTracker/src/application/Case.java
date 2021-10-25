@@ -17,6 +17,7 @@ public class Case {
 		timeWorked = System.currentTimeMillis();
 		time = LocalTime.now();
 		date = LocalDate.now();
+		title = "case "+this.getClass();
 	}
 
 	public Case(String title) {

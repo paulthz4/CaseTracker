@@ -17,7 +17,7 @@ import javafx.scene.text.Text;
 
 public class Main extends Application {
 	private TextField field = new TextField();
-	private ArrayList<String> list = new ArrayList<>(20);
+	private ArrayList<Case> list = new ArrayList<>(20);
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -35,11 +35,11 @@ public class Main extends Application {
 			Text cases = new Text();
 			// register and handle 'new case' button
 			newcasebtn.setOnAction(e -> {
-				list.add(field.getText());
+				list.add(new Case(field.getText()));
 				System.out.println(list.toString());
 				String a = "";
-				for (String text : list) {
-					a += text + " ";
+				for (Case element : list) {
+					a += element.getTitle() + " ";
 					cases.setText(a);
 				}
 			});
@@ -65,20 +65,20 @@ public class Main extends Application {
 		}
 	}
 
-	public void newCase() {
-		list.add((field.getText()));
-		System.out.println(list);
-	}
+//	public void newCase() {
+//		list.add((field.getText()));
+//		System.out.println(list);
+//	}
 
 	public static void main(String[] args) {
 		launch(args);
 	}
 
-	public VBox getConsol() {
-		VBox vbox = new VBox(15);
-		vbox.setStyle("-fx-background-color: #FFFFFF;");
-		vbox.setStyle("-fx-border-color: white");
-		vbox.getChildren().add(new Label("where times go"));
-		return vbox;
-	}
+//	public VBox getConsol() {
+//		VBox vbox = new VBox(15);
+//		vbox.setStyle("-fx-background-color: #FFFFFF;");
+//		vbox.setStyle("-fx-border-color: white");
+//		vbox.getChildren().add(new Label("where times go"));
+//		return vbox;
+//	}
 }
