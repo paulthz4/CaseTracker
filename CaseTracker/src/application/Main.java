@@ -4,16 +4,16 @@ import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
-import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class Main extends Application {
 	private TextField field = new TextField();
@@ -29,8 +29,9 @@ public class Main extends Application {
 			TextField field = new TextField();
 			Button newcasebtn = new Button("New Case");
 			vbox.getChildren().addAll(new Label("New Case:"), field, newcasebtn);
-
-			HBox hbox = new HBox(10);
+			
+			// displays the case titles
+			HBox hbox = new HBox(15);
 			hbox.setMaxWidth(100);
 			Text cases = new Text();
 			// register and handle 'new case' button
@@ -41,19 +42,31 @@ public class Main extends Application {
 				for (Case element : list) {
 					a += element.getTitle() + " ";
 					cases.setText(a);
+//					System.out.print(element.getTitle());
 				}
 			});
 
 //			cases.getText().bind(list);
 			// HBox for displaying all the cases in the list
-
+			
+			// displays the case times
+			TextArea tarea = new TextArea();
+			tarea.setEditable(true);
+			tarea.setPrefColumnCount(5);
+			tarea.setPrefRowCount(8);
+			tarea.setWrapText(true);
+			tarea.setStyle("-fx-padding: 5px;"
+					+ "    -fx-border-insets: 5px;"
+					+ "    -fx-background-insets: 5px;");
+			
 			hbox.getChildren().addAll(cases);
 
 			BorderPane root = new BorderPane();
 			root.setStyle("-fx-border-color: red");
-			root.setPadding(new Insets(10, 10, 10, 10));
-			root.setLeft(hbox);
+			root.setPadding(new Insets(15, 15, 15, 10));
+			root.setBottom(hbox);
 			root.setRight(vbox);
+			root.setCenter(tarea);
 //			root.setRight(new CaseForm());
 			Scene scene = new Scene(root, 500, 400);
 
