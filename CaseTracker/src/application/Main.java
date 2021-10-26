@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -22,6 +23,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 	private TextField field = new TextField();
 	private ArrayList<Case> list = new ArrayList<>(20);
+	private ArrayList<String> titleList = new ArrayList<>();
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -35,7 +37,8 @@ public class Main extends Application {
 			vbox.getChildren().addAll(new Label("New Case:"), field, newcasebtn);
 
 			// create combobox (dropdown) (doesnt work yet)
-			ComboBox<Case> cbo = new ComboBox<>();
+			ListView<String> lview = new ListView<>();
+			lview.setPrefSize(20,100);
 //			cbo.getItems().addAll(items);
 
 			// displays the case titles
@@ -48,17 +51,25 @@ public class Main extends Application {
 				System.out.println(list.toString());
 				String a = "";
 				for (Case element : list) {
+					// display each case title in the text node
 					a += element.getTitle() + " ";
 					casesfield.setText(a);
 //					ObservableList<Case> items = FXCollections.observableArrayList(list);
-//					cbo.getItems().add(element.getTitle());
-//					System.out.print(element.getTitle());
+//					for(String s: titleList) {
+//						if(items.contains(s))
+//							lview.getItems().add(s);
+//					}
+					if(!titleList.contains(element.getTitle()))
+						titleList.add(element.getTitle());
 				}
-				ObservableList<Case> items = FXCollections.observableArrayList(list);
-				cbo.getItems().addAll(items);
+				
+				ObservableList<String> items = FXCollections.observableArrayList(titleList);
+				System.out.println(titleList.toString());
+				lview.getItems().clear();
+				lview.setItems(items);
 			});
+				
 			hbox.getChildren().addAll(casesfield);
-//			cases.getText().bind(list);
 			// HBox for displaying all the cases in the list
 
 			// displays the case times
@@ -70,8 +81,9 @@ public class Main extends Application {
 			tarea.setStyle("-fx-padding: 5px;" + "    -fx-border-insets: 5px;" + "    -fx-background-insets: 5px;");
 
 			// pane for the combo box
-			StackPane paneforCbo = new StackPane();
-			paneforCbo.getChildren().add(cbo);
+			StackPane paneforListView = new StackPane();
+			paneforListView.setPadding(new Insets(5,10,10,10));
+			paneforListView.getChildren().add(lview);
 
 			BorderPane root = new BorderPane();
 			root.setStyle("-fx-border-color: red");
@@ -79,7 +91,7 @@ public class Main extends Application {
 			root.setBottom(hbox);
 			root.setRight(vbox);
 			root.setCenter(tarea);
-			root.setTop(paneforCbo);
+			root.setTop(paneforListView);
 //			root.setRight(new CaseForm());
 			Scene scene = new Scene(root, 500, 400);
 
