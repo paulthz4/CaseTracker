@@ -38,40 +38,30 @@ public class Main extends Application {
 
 			// create combobox (dropdown) (doesnt work yet)
 			ListView<String> lview = new ListView<>();
-			lview.setPrefSize(20,100);
+			lview.setPrefSize(20,110);
 //			cbo.getItems().addAll(items);
 
 			// displays the case titles
-			HBox hbox = new HBox(15);
-			hbox.setMaxWidth(100);
-			Text casesfield = new Text();
 			// register and handle 'new case' button
 			newcasebtn.setOnAction(e -> {
-				list.add(new Case(field.getText()));
+				//make sure not to make duplicates
+				if(!titleList.contains(field.getText()))
+					list.add(new Case(field.getText()));
 				System.out.println(list.toString());
-				String a = "";
 				for (Case element : list) {
 					// display each case title in the text node
-					a += element.getTitle() + " ";
-					casesfield.setText(a);
-//					ObservableList<Case> items = FXCollections.observableArrayList(list);
-//					for(String s: titleList) {
-//						if(items.contains(s))
-//							lview.getItems().add(s);
-//					}
 					if(!titleList.contains(element.getTitle()))
 						titleList.add(element.getTitle());
 				}
-				
+				// adds the case titles to the listview 
 				ObservableList<String> items = FXCollections.observableArrayList(titleList);
 				System.out.println(titleList.toString());
 				lview.getItems().clear();
 				lview.setItems(items);
 			});
 				
-			hbox.getChildren().addAll(casesfield);
+			
 			// HBox for displaying all the cases in the list
-
 			// displays the case times
 			TextArea tarea = new TextArea();
 			tarea.setEditable(true);
@@ -82,13 +72,12 @@ public class Main extends Application {
 
 			// pane for the combo box
 			StackPane paneforListView = new StackPane();
-			paneforListView.setPadding(new Insets(5,10,10,10));
+			paneforListView.setPadding(new Insets(1,10,10,10));
 			paneforListView.getChildren().add(lview);
 
 			BorderPane root = new BorderPane();
 			root.setStyle("-fx-border-color: red");
 			root.setPadding(new Insets(15, 15, 15, 10));
-			root.setBottom(hbox);
 			root.setRight(vbox);
 			root.setCenter(tarea);
 			root.setTop(paneforListView);
