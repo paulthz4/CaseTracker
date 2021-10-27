@@ -78,7 +78,9 @@ public class Main extends Application {
 					if (s == lview.getSelectionModel().getSelectedItem())
 						i = titleList.indexOf(s);
 				}
-				tarea.setText(list.get(i).getTitle());
+				tarea.setText(list.get(i).getTitle()+"\n Date created: "+list.get(i).getDate()+
+						"\n Time created: "+list.get(i).getTime()+
+						"\n time worked: "+list.get(i).getTimeWorked()+"seconds");
 			});
 
 			BorderPane root = new BorderPane();

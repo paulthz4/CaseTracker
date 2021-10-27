@@ -17,7 +17,7 @@ public class Case {
 		timeWorked = System.currentTimeMillis();
 		time = LocalTime.now();
 		date = LocalDate.now();
-		title = "case "+this.getClass();
+		title = "case " + this.getClass();
 	}
 
 	public Case(String title) {
@@ -48,7 +48,7 @@ public class Case {
 	}
 
 	public long getTimeWorked() {
-		return timeWorked - System.currentTimeMillis();
+		return (System.currentTimeMillis() - timeWorked)/1000;
 	}
 
 	public String getTitle() {
