@@ -83,10 +83,16 @@ public class Main extends Application {
 						"\n Time created: "+list.get(i).getTime()+
 						"\n time worked: "+list.get(i).getTimeWorked()+"seconds"+
 						"\n Currently working: "+list.get(i).isActive());
+				
+				// shows the 'start' and 'stop' buttons
 				casebtns.getChildren().clear();
 				casebtns.getChildren().addAll(list.get(i).getStartBtn(), list.get(i).getStopBtn());
-				list.get(i).getStartBtn().setOnAction(e->{
-					
+				Case temp = list.get(i);
+				temp.getStartBtn().setOnAction(e->{
+					temp.setActive(true);
+				});
+				temp.getStopBtn().setOnAction(e->{
+					temp.setActive(false);
 				});
 			});
 

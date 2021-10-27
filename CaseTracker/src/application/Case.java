@@ -4,9 +4,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import javafx.collections.FXCollections;
-import javafx.application.Application;
-import javafx.collections.FXCollections;
 import javafx.scene.control.Button;
 
 public class Case {
@@ -53,6 +50,9 @@ public class Case {
 		return active;
 	}
 
+	public void setActive(boolean a) {
+		active = true;
+	}
 	public long getTimeWorked() {
 		return (System.currentTimeMillis() - timeWorked) / 1000;
 	}
