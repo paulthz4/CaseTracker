@@ -8,7 +8,6 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -17,12 +16,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-	private TextField field = new TextField();
-	private ArrayList<Case> list = new ArrayList<>(20);
+	private ArrayList<Case> list = new ArrayList<>();
 	private ArrayList<String> titleList = new ArrayList<>();
 
 	@Override
@@ -70,7 +67,10 @@ public class Main extends Application {
 			StackPane paneforListView = new StackPane();
 			paneforListView.setPadding(new Insets(1, 10, 10, 10));
 			paneforListView.getChildren().add(lview);
-
+			
+			// pane for "start" and "stop" case button
+			HBox casebtns = new HBox(8);
+			
 			// add listener to ListView
 			lview.getSelectionModel().selectedItemProperty().addListener(ov -> {
 				int i = 0;
@@ -78,9 +78,16 @@ public class Main extends Application {
 					if (s == lview.getSelectionModel().getSelectedItem())
 						i = titleList.indexOf(s);
 				}
+				// gets the description about the case
 				tarea.setText(list.get(i).getTitle()+"\n Date created: "+list.get(i).getDate()+
 						"\n Time created: "+list.get(i).getTime()+
-						"\n time worked: "+list.get(i).getTimeWorked()+"seconds");
+						"\n time worked: "+list.get(i).getTimeWorked()+"seconds"+
+						"\n Currently working: "+list.get(i).isActive());
+				casebtns.getChildren().clear();
+				casebtns.getChildren().addAll(list.get(i).getStartBtn(), list.get(i).getStopBtn());
+				list.get(i).getStartBtn().setOnAction(e->{
+					
+				});
 			});
 
 			BorderPane root = new BorderPane();
@@ -89,6 +96,7 @@ public class Main extends Application {
 			root.setRight(vbox);
 			root.setCenter(tarea);
 			root.setTop(paneforListView);
+			root.setBottom(casebtns);
 
 			Scene scene = new Scene(root, 500, 400);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
