@@ -70,25 +70,24 @@ public class Main extends Application {
 			StackPane paneforListView = new StackPane();
 			paneforListView.setPadding(new Insets(1, 10, 10, 10));
 			paneforListView.getChildren().add(lview);
-			
+
 			// add listener to ListView
-			lview.getSelectionModel().selectedItemProperty().addListener(ov->{
+			lview.getSelectionModel().selectedItemProperty().addListener(ov -> {
 				int i = 0;
-				for(String s: titleList) {
-					if(s == lview.getSelectionModel().getSelectedItem()) {
+				for (String s : titleList) {
+					if (s == lview.getSelectionModel().getSelectedItem())
 						i = titleList.indexOf(s);
-					}
 				}
 				tarea.setText(list.get(i).getTitle());
 			});
-			
+
 			BorderPane root = new BorderPane();
 //			root.setStyle("-fx-border-color: red");
 			root.setPadding(new Insets(15, 15, 15, 10));
 			root.setRight(vbox);
 			root.setCenter(tarea);
 			root.setTop(paneforListView);
-			
+
 			Scene scene = new Scene(root, 500, 400);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
