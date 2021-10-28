@@ -1,7 +1,6 @@
 package application;
 
 import java.util.ArrayList;
-
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -67,10 +66,10 @@ public class Main extends Application {
 			StackPane paneforListView = new StackPane();
 			paneforListView.setPadding(new Insets(1, 10, 10, 10));
 			paneforListView.getChildren().add(lview);
-			
+
 			// pane for "start" and "stop" case button
 			HBox casebtns = new HBox(8);
-			
+
 			// add listener to ListView
 			lview.getSelectionModel().selectedItemProperty().addListener(ov -> {
 				int i = 0;
@@ -79,19 +78,18 @@ public class Main extends Application {
 						i = titleList.indexOf(s);
 				}
 				// gets the description about the case
-				tarea.setText(list.get(i).getTitle()+"\n Date created: "+list.get(i).getDate()+
-						"\n Time created: "+list.get(i).getTime()+
-						"\n time worked: "+list.get(i).getTimeWorked()+"seconds"+
-						"\n Currently working: "+list.get(i).isActive());
-				
+				tarea.setText(list.get(i).getTitle() + "\n Date created: " + list.get(i).getDate() + "\n Time created: "
+						+ list.get(i).getTime() + "\n time worked: " + list.get(i).getTimeWorked() + "seconds"
+						+ "\n Currently working: " + list.get(i).isActive());
+
 				// shows the 'start' and 'stop' buttons
 				casebtns.getChildren().clear();
 				casebtns.getChildren().addAll(list.get(i).getStartBtn(), list.get(i).getStopBtn());
 				Case temp = list.get(i);
-				temp.getStartBtn().setOnAction(e->{
+				temp.getStartBtn().setOnAction(e -> {
 					temp.setActive(true);
 				});
-				temp.getStopBtn().setOnAction(e->{
+				temp.getStopBtn().setOnAction(e -> {
 					temp.setActive(false);
 				});
 			});
