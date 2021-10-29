@@ -14,6 +14,7 @@ public class Case {
 	private String title;
 	private Button start = new Button("Start");
 	private Button stop = new Button("Stop");
+	private Button refresh = new Button("Refresh");
 
 	public Case() {
 		active = false;
@@ -51,7 +52,7 @@ public class Case {
 	}
 
 	public void setActive(boolean a) {
-		active = true;
+		active = a;
 	}
 	public long getTimeWorked() {
 		return (System.currentTimeMillis() - timeWorked) / 1000;
@@ -67,5 +68,9 @@ public class Case {
 
 	public Button getStopBtn() {
 		return stop;
+	}
+	
+	public Button getRefreshBtn() {
+		return refresh;
 	}
 }
