@@ -85,7 +85,7 @@ public class Main extends Application {
 
 				// shows the 'start' and 'stop' buttons
 				casebtns.getChildren().clear();
-				casebtns.getChildren().addAll(list.get(i).getStartBtn(), list.get(i).getStopBtn());
+				casebtns.getChildren().addAll(list.get(i).getStartBtn(), list.get(i).getStopBtn(),list.get(i).getRefreshBtn());
 				Case temp = list.get(i);
 				temp.getStartBtn().setOnAction(e -> {
 					if (free) {
