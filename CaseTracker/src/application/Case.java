@@ -10,6 +10,7 @@ public class Case {
 	private boolean active;
 	private LocalTime time;
 	private LocalDate date;
+	private LocalDateTime myDateObj = LocalDateTime.now();
 	private long timeWorked;
 	private String title;
 	private Button start = new Button("Start");
@@ -23,7 +24,7 @@ public class Case {
 		date = LocalDate.now();
 		title = "case " + this.getClass();
 	}
-	
+
 	public Case(String title) {
 		active = false;
 		timeWorked = System.currentTimeMillis();
@@ -31,7 +32,7 @@ public class Case {
 		date = LocalDate.now();
 		this.title = title;
 	}
-	
+
 	public String getTime() {
 		return time.toString();
 	}
@@ -41,7 +42,6 @@ public class Case {
 	}
 
 	public String getDateTime() {
-		LocalDateTime myDateObj = LocalDateTime.now();
 		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("E, MMM dd yyyy HH:mm:ss");
 		String formattedDate = myDateObj.format(myFormatObj);
 		return formattedDate;
@@ -54,8 +54,22 @@ public class Case {
 	public void setActive(boolean a) {
 		active = a;
 	}
-	public long getTimeWorked() {
-		return (System.currentTimeMillis() - timeWorked) / 1000;
+
+	public String getTimeWorked() {
+		Long time = System.currentTimeMillis() - timeWorked;
+//		if (time < 1000)
+//			return (time / 1000) + " seconds"; // returns seconds
+//		if (time / 1000 > 60)
+//			return (time / 1000) / 60 + " minutes"; // returns minutes
+//		else
+//			return (time / 1000) / 60 / 60 + " hours " + time / 1000 % 60;
+
+		if (time >= 3.6e6)
+			return (time / 1000) / 60 / 60 + " hours " + time / 1000 % 60 + " minutes";
+		if ((time / 1000) > 60)
+			return (time / 1000) / 60 + " minutes " + time / 1000 % 60 + " seconds"; // returns minutes
+		else
+			return (time / 1000) + " seconds"; // returns seconds
 	}
 
 	public String getTitle() {
@@ -69,7 +83,7 @@ public class Case {
 	public Button getStopBtn() {
 		return stop;
 	}
-	
+
 	public Button getRefreshBtn() {
 		return refresh;
 	}
