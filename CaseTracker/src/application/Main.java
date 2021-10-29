@@ -79,13 +79,14 @@ public class Main extends Application {
 						i = titleList.indexOf(s);
 				}
 				// gets the description about the case
-				tarea.setText(list.get(i).getTitle() + "\n Date created: " + list.get(i).getDate() + "\n Time created: "
-						+ list.get(i).getTime() + "\n time worked: " + list.get(i).getTimeWorked() + "seconds"
-						+ "\n Currently working: " + list.get(i).isActive());
+				tarea.setText(
+						list.get(i).getTitle() + "\n Date created: " + list.get(i).getDateTime() + "\n time worked: "
+								+ list.get(i).getTimeWorked() + "\n Currently working: " + list.get(i).isActive());
 
 				// shows the 'start' and 'stop' buttons
 				casebtns.getChildren().clear();
-				casebtns.getChildren().addAll(list.get(i).getStartBtn(), list.get(i).getStopBtn(),list.get(i).getRefreshBtn());
+				casebtns.getChildren().addAll(list.get(i).getStartBtn(), list.get(i).getStopBtn(),
+						list.get(i).getRefreshBtn());
 				Case temp = list.get(i);
 				temp.getStartBtn().setOnAction(e -> {
 					if (free) {
@@ -96,6 +97,10 @@ public class Main extends Application {
 				temp.getStopBtn().setOnAction(e -> {
 					temp.setActive(false);
 					free = true;
+				});
+				temp.getRefreshBtn().setOnAction(e -> {
+					tarea.setText(temp.getTitle() + "\n Date created: " + temp.getDateTime() + "\n time worked: "
+							+ temp.getTimeWorked() + "\n Currently working: " + temp.isActive());
 				});
 			});
 
