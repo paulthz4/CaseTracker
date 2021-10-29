@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 	private ArrayList<Case> list = new ArrayList<>();
 	private ArrayList<String> titleList = new ArrayList<>();
+	private boolean free = true;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -87,10 +88,14 @@ public class Main extends Application {
 				casebtns.getChildren().addAll(list.get(i).getStartBtn(), list.get(i).getStopBtn());
 				Case temp = list.get(i);
 				temp.getStartBtn().setOnAction(e -> {
-					temp.setActive(true);
+					if (free) {
+						temp.setActive(true);
+						free = false;
+					}
 				});
 				temp.getStopBtn().setOnAction(e -> {
 					temp.setActive(false);
+					free = true;
 				});
 			});
 
