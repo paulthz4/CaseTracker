@@ -91,6 +91,7 @@ public class Main extends Application {
 				temp.getStartBtn().setOnAction(e -> {
 					if (free) {
 						temp.setActive(true);
+						temp.startTime();
 						free = false;
 					}
 				});
