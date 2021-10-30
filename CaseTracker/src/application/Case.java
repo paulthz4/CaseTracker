@@ -10,7 +10,7 @@ public class Case {
 	private boolean active;
 	private LocalTime time;
 	private LocalDate date;
-	private LocalDateTime myDateObj = LocalDateTime.now();
+	private LocalDateTime myDateObj;
 	private long timeWorked;
 	private String title;
 	private Button start = new Button("Start");
@@ -19,10 +19,10 @@ public class Case {
 
 	public Case() {
 		active = false;
-		timeWorked = System.currentTimeMillis();
 		time = LocalTime.now();
 		date = LocalDate.now();
 		title = "case " + this.getClass();
+		myDateObj = LocalDateTime.now();
 	}
 
 	public Case(String title) {
@@ -72,6 +72,10 @@ public class Case {
 			return (time / 1000) + " seconds"; // returns seconds
 	}
 
+	public void startTime() {
+		timeWorked = System.currentTimeMillis();
+	}
+	
 	public String getTitle() {
 		return title;
 	}
