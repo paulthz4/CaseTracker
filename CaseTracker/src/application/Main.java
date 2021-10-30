@@ -99,8 +99,8 @@ public class Main extends Application {
 					free = true;
 				});
 				temp.getRefreshBtn().setOnAction(e -> {
-					tarea.setText(temp.getTitle() + "\n Date created: " + temp.getDateTime() + "\n time worked: "
-							+ temp.getTimeWorked() + "\n Currently working: " + temp.isActive());
+						tarea.setText(temp.getTitle() + "\n Date created: " + temp.getDateTime() + "\n time worked: "
+								+ temp.getTimeWorked() + "\n Currently working: " + temp.isActive());
 				});
 			});
 
