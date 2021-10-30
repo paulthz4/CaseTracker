@@ -10,8 +10,8 @@ public class Case {
 	private boolean active;
 	private LocalTime time;
 	private LocalDate date;
-	private LocalDateTime myDateObj;
-	private long timeWorked;
+	private LocalDateTime myDateObj = LocalDateTime.now();
+	private long timeWorked = 0;
 	private String title;
 	private Button start = new Button("Start");
 	private Button stop = new Button("Stop");
@@ -22,12 +22,11 @@ public class Case {
 		time = LocalTime.now();
 		date = LocalDate.now();
 		title = "case " + this.getClass();
-		myDateObj = LocalDateTime.now();
 	}
 
 	public Case(String title) {
 		active = false;
-		timeWorked = System.currentTimeMillis();
+//		timeWorked = System.currentTimeMillis();
 		time = LocalTime.now();
 		date = LocalDate.now();
 		this.title = title;
@@ -63,7 +62,7 @@ public class Case {
 //			return (time / 1000) / 60 + " minutes"; // returns minutes
 //		else
 //			return (time / 1000) / 60 / 60 + " hours " + time / 1000 % 60;
-
+		if(timeWorked == 0) return timeWorked+"";
 		if (time >= 3.6e6)
 			return (time / 1000) / 60 / 60 + " hours " + time / 1000 % 60 + " minutes";
 		if ((time / 1000) > 60)
@@ -75,7 +74,7 @@ public class Case {
 	public void startTime() {
 		timeWorked = System.currentTimeMillis();
 	}
-	
+
 	public String getTitle() {
 		return title;
 	}
