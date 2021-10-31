@@ -21,7 +21,8 @@ public class Main extends Application {
 	private ArrayList<Case> list = new ArrayList<>();
 	private ArrayList<String> titleList = new ArrayList<>();
 	private boolean free = true;
-
+	// stopping and starting again resets the time worked
+	// the stop button turns the working variable to false but doesn't stop the time worked
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -117,7 +118,7 @@ public class Main extends Application {
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
-			primaryStage.setTitle("Case Tracker");
+			primaryStage.setTitle("Vention Case Tracker");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
