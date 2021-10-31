@@ -26,7 +26,6 @@ public class Case {
 
 	public Case(String title) {
 		active = false;
-//		timeWorked = System.currentTimeMillis();
 		time = LocalTime.now();
 		date = LocalDate.now();
 		this.title = title;
@@ -56,17 +55,11 @@ public class Case {
 
 	public String getTimeWorked() {
 		Long time = System.currentTimeMillis() - timeWorked;
-//		if (time < 1000)
-//			return (time / 1000) + " seconds"; // returns seconds
-//		if (time / 1000 > 60)
-//			return (time / 1000) / 60 + " minutes"; // returns minutes
-//		else
-//			return (time / 1000) / 60 / 60 + " hours " + time / 1000 % 60;
 		if(timeWorked == 0) return timeWorked+"";
 		if (time >= 3.6e6)
-			return (time / 1000) / 60 / 60 + " hours " + time / 1000 % 60 + " minutes";
+			return (time / 1000) / 60 / 60 + " hours " + time / 1000 % 60 + " minutes"; // returns hours and minutes
 		if ((time / 1000) > 60)
-			return (time / 1000) / 60 + " minutes " + time / 1000 % 60 + " seconds"; // returns minutes
+			return (time / 1000) / 60 + " minutes " + time / 1000 % 60 + " seconds"; // returns minutes and seconds
 		else
 			return (time / 1000) + " seconds"; // returns seconds
 	}
