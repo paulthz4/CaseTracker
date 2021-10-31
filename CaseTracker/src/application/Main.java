@@ -11,6 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -32,6 +34,7 @@ public class Main extends Application {
 //			vbox.setStyle("-fx-border-color: black");
 			TextField field = new TextField();
 			Button newcasebtn = new Button("New Case");
+//			Image img = new Image("../images/ventionLogo.png");
 			vbox.getChildren().addAll(new Label("New Case:"), field, newcasebtn);
 
 			// create ListView
@@ -107,6 +110,8 @@ public class Main extends Application {
 			});
 
 			BorderPane root = new BorderPane();
+			// colours #15344f and #007ce7, #eff2f8, #bccace, #1ac876 -> for buttons
+			root.setStyle("-fx-background-color: #007ce7");
 //			root.setStyle("-fx-border-color: red");
 			root.setPadding(new Insets(15, 15, 15, 10));
 			root.setRight(vbox);
