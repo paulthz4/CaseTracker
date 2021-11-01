@@ -111,8 +111,7 @@ public class Main extends Application {
 
 			BorderPane root = new BorderPane();
 			// colours #15344f and #007ce7, #eff2f8, #bccace, #1ac876 -> for buttons
-			root.setStyle("-fx-background-color: #007ce7");
-//			root.setStyle("-fx-border-color: red");
+//			root.setStyle("-fx-background-color: #007ce7");
 			root.setPadding(new Insets(15, 15, 15, 10));
 			root.setRight(vbox);
 			root.setCenter(tarea);
