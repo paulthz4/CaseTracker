@@ -16,6 +16,7 @@ public class Case {
 	private Button start = new Button("Start");
 	private Button stop = new Button("Stop");
 	private Button refresh = new Button("Refresh");
+	private Button clearCase = new Button("Clear Case");
 
 	public Case() {
 		active = false;
@@ -73,6 +74,7 @@ public class Case {
 	}
 
 	public Button getStartBtn() {
+		start.setStyle("-fx-text-fill: #22C628");
 		return start;
 	}
 
@@ -82,5 +84,9 @@ public class Case {
 
 	public Button getRefreshBtn() {
 		return refresh;
+	}
+	public Button getClearCaseBtn(){
+		clearCase.setStyle("-fx-text-fill: #F43838");
+		return clearCase;
 	}
 }

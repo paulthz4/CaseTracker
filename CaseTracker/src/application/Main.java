@@ -75,7 +75,7 @@ public class Main extends Application {
 			paneforListView.setPadding(new Insets(1, 10, 10, 10));
 			paneforListView.getChildren().add(lview);
 
-			// pane for "start" and "stop" case button
+			// pane for case button "start", "stop", and 'clear case' btns
 			HBox casebtns = new HBox(8);
 
 			// add listener to ListView
@@ -93,7 +93,7 @@ public class Main extends Application {
 				// shows the 'start' and 'stop' buttons
 				casebtns.getChildren().clear();
 				casebtns.getChildren().addAll(list.get(i).getStartBtn(), list.get(i).getStopBtn(),
-						list.get(i).getRefreshBtn());
+						list.get(i).getRefreshBtn(), list.get(i).getClearCaseBtn());
 				Case temp = list.get(i);
 				temp.getStartBtn().setOnAction(e -> {
 					if (free) {
