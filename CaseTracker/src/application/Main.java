@@ -23,8 +23,11 @@ public class Main extends Application {
 	private ArrayList<Case> list = new ArrayList<>();
 	private ArrayList<String> titleList = new ArrayList<>();
 	private boolean free = true;
+	// TODO: 
 	// stopping and starting again resets the time worked
 	// the stop button turns the working variable to false but doesn't stop the time worked
+	// add 'close case' button to clear just one instance of an instance
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
