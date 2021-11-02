@@ -110,6 +110,15 @@ public class Main extends Application {
 						tarea.setText(temp.getTitle() + "\n Date created: " + temp.getDateTime() + "\n time worked: "
 								+ temp.getTimeWorked() + "\n Currently working: " + temp.isActive());
 				});
+				temp.getClearCaseBtn().setOnAction(e->{
+					int index = titleList.indexOf(lview.getSelectionModel().getSelectedItem());
+					titleList.remove(index);
+					list.remove(index);
+					lview.getSelectionModel().clearAndSelect(1);
+					lview.getItems().remove(index);
+					ObservableList<String> items = FXCollections.observableArrayList(titleList);
+					lview.setItems(items);
+				});
 			});
 
 			BorderPane root = new BorderPane();
