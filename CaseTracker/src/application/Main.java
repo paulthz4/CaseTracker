@@ -116,6 +116,7 @@ public class Main extends Application {
 					});
 
 					temp.getClearCaseBtn().setOnAction(e -> {
+						free = true;
 						int index = titleList.indexOf(lview.getSelectionModel().getSelectedItem());
 						if (titleList.size() > 1) {
 							titleList.remove(index);
