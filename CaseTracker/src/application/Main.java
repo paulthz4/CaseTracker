@@ -11,8 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+//import javafx.scene.image.Image;
+//import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -23,11 +23,12 @@ public class Main extends Application {
 	private ArrayList<Case> list = new ArrayList<>();
 	private ArrayList<String> titleList = new ArrayList<>();
 	private boolean free = true;
-	// TODO: 
+	// TODO:
 	// stopping and starting again resets the time worked
-	// the stop button turns the working variable to false but doesn't stop the time worked
+	// the stop button turns the working variable to false but doesn't stop the time
+	// worked
 	// add 'close case' button to clear just one instance of an instance
-	
+
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -86,39 +87,55 @@ public class Main extends Application {
 						i = titleList.indexOf(s);
 				}
 				// gets the description about the case
-				tarea.setText(
-						list.get(i).getTitle() + "\n Date created: " + list.get(i).getDateTime() + "\n time worked: "
-								+ list.get(i).getTimeWorked() + "\n Currently working: " + list.get(i).isActive());
+				if (list.size() > 0) {
+					tarea.setText(list.get(i).getTitle() + "\n Date created: " + list.get(i).getDateTime()
+							+ "\n time worked: " + list.get(i).getTimeWorked() + "\n Currently working: "
+							+ list.get(i).isActive());
+					// shows the 'start' and 'stop' buttons
+					casebtns.getChildren().clear();
+					casebtns.getChildren().addAll(list.get(i).getStartBtn(), list.get(i).getStopBtn(),
+							list.get(i).getRefreshBtn(), list.get(i).getClearCaseBtn());
+					Case temp = list.get(i);
+					temp.getStartBtn().setOnAction(e -> {
+						if (free) {
+							temp.setActive(true);
+							temp.setStartTime();
+							free = false;
+						}
+					});
 
-				// shows the 'start' and 'stop' buttons
-				casebtns.getChildren().clear();
-				casebtns.getChildren().addAll(list.get(i).getStartBtn(), list.get(i).getStopBtn(),
-						list.get(i).getRefreshBtn(), list.get(i).getClearCaseBtn());
-				Case temp = list.get(i);
-				temp.getStartBtn().setOnAction(e -> {
-					if (free) {
-						temp.setActive(true);
-						temp.startTime();
-						free = false;
-					}
-				});
-				temp.getStopBtn().setOnAction(e -> {
-					temp.setActive(false);
-					free = true;
-				});
-				temp.getRefreshBtn().setOnAction(e -> {
+					temp.getStopBtn().setOnAction(e -> {
+						temp.setActive(false);
+						free = true;
+						temp.setStopTime();
+					});
+
+					temp.getRefreshBtn().setOnAction(e -> {
 						tarea.setText(temp.getTitle() + "\n Date created: " + temp.getDateTime() + "\n time worked: "
 								+ temp.getTimeWorked() + "\n Currently working: " + temp.isActive());
-				});
-				temp.getClearCaseBtn().setOnAction(e->{
-					int index = titleList.indexOf(lview.getSelectionModel().getSelectedItem());
-					titleList.remove(index);
-					list.remove(index);
-					lview.getSelectionModel().clearAndSelect(1);
-					lview.getItems().remove(index);
-					ObservableList<String> items = FXCollections.observableArrayList(titleList);
-					lview.setItems(items);
-				});
+					});
+
+					temp.getClearCaseBtn().setOnAction(e -> {
+						int index = titleList.indexOf(lview.getSelectionModel().getSelectedItem());
+						if (titleList.size() > 1) {
+							titleList.remove(index);
+							list.remove(index);
+							lview.getSelectionModel().clearAndSelect(1);
+							lview.getItems().remove(index);
+							ObservableList<String> items = FXCollections.observableArrayList(titleList);
+							lview.setItems(items);
+						} else if (titleList.size() == 1) {
+							titleList.clear();
+							list.clear();
+							lview.getSelectionModel().clearSelection();
+							ObservableList<String> items = FXCollections.observableArrayList(titleList);
+							lview.setItems(items);
+						}
+
+					});
+				}
+				
+				
 			});
 
 			BorderPane root = new BorderPane();
