@@ -99,15 +99,19 @@ public class Main extends Application {
 					temp.getStartBtn().setOnAction(e -> {
 						if (free) {
 							temp.setActive(true);
-							temp.setStartTime();
 							free = false;
+							temp.setStartTime();
+							
 						}
 					});
 
 					temp.getStopBtn().setOnAction(e -> {
-						temp.setActive(false);
-						free = true;
-						temp.setStopTime();
+						if (!free) {
+							temp.setActive(false);
+							free = true;
+							temp.setStopTime();
+						}
+
 					});
 
 					temp.getRefreshBtn().setOnAction(e -> {
@@ -135,8 +139,7 @@ public class Main extends Application {
 
 					});
 				}
-				
-				
+
 			});
 
 			BorderPane root = new BorderPane();
@@ -148,7 +151,7 @@ public class Main extends Application {
 			root.setTop(paneforListView);
 			root.setBottom(casebtns);
 
-			Scene scene = new Scene(root, 500, 400);
+			Scene scene = new Scene(root, 450, 350);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
