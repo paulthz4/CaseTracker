@@ -90,7 +90,8 @@ public class Main extends Application {
 				if (list.size() > 0) {
 					tarea.setText(list.get(i).getTitle() + "\n Date created: " + list.get(i).getDateTime()
 							+ "\n time worked: " + list.get(i).getTimeWorked() + "\n Currently working: "
-							+ list.get(i).isActive());
+							+ list.get(i).isActive() + "\n Total Time: " + list.get(i).getTotalTime());
+					
 					// shows the 'start' and 'stop' buttons
 					casebtns.getChildren().clear();
 					casebtns.getChildren().addAll(list.get(i).getStartBtn(), list.get(i).getStopBtn(),
@@ -101,7 +102,7 @@ public class Main extends Application {
 							temp.setActive(true);
 							free = false;
 							temp.setStartTime();
-							
+							temp.a += 1;
 						}
 					});
 
@@ -110,13 +111,14 @@ public class Main extends Application {
 							temp.setActive(false);
 							free = true;
 							temp.setStopTime();
+							temp.a += 1;
 						}
 
 					});
 
 					temp.getRefreshBtn().setOnAction(e -> {
 						tarea.setText(temp.getTitle() + "\n Date created: " + temp.getDateTime() + "\n time worked: "
-								+ temp.getTimeWorked() + "\n Currently working: " + temp.isActive());
+								+ temp.getTimeWorked() + "\n Currently working: " + temp.isActive() + "\n Total Time: " + temp.getTotalTime());
 					});
 
 					temp.getClearCaseBtn().setOnAction(e -> {
