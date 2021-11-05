@@ -19,6 +19,7 @@ public class Case {
 	private Button stop = new Button("Stop");
 	private Button refresh = new Button("Refresh");
 	private Button clearCase = new Button("Clear Case");
+	public int a=0;
 	private Stack<Long> timeList = new Stack<>();
 
 	public Case() {
@@ -36,9 +37,13 @@ public class Case {
 		String formattedDate = myDateObj.format(myFormatObj);
 		return formattedDate;
 	}
-	
+
 	public String getTotalTime() {
-		return totalTime +"";
+//		for(Long i: timeList) {
+//			totalTime += i;
+//		}
+//		timeList.clear();
+		return totalTime + "";
 	}
 
 	public boolean isActive() {
@@ -53,26 +58,9 @@ public class Case {
 		long time = 0;
 		long newTime;
 		if (active) {
-			if ( stopTime == 0) { // startTime != 0 checks if the start buttons has been pressed & the
-													// stop btn hasn't been pressed
+			 // the start buttons has been pressed but the stop btn hasn't been pressed
 				time = System.currentTimeMillis() - startTime;
-				totalTime += time;
-			} else if (startTime != 0 && stopTime != 0) {
-				newTime = stopTime - startTime;
-				timeList.add(newTime); // not important
-				totalTime += newTime;
-			}
-//		long time;
-//		if (stopTime != 0 && startTime != 0) {
-//			time = stopTime - startTime;
-//			timeList.add(time);
-//			for(Long i: timeList) {
-//				time += i;
-//			}
-//		}
-			else {
-				time = 0;
-			}
+			
 			if (time == 0)
 				return time + "";
 			if (time >= 3.6e6)
@@ -80,8 +68,10 @@ public class Case {
 			else if ((time / 1000) >= 60)
 				return (time / 1000) / 60 + " minutes " + time / 1000 % 60 + " seconds"; // returns minutes and seconds
 			else
-				return (totalTime+time / 1000) + " seconds"; // returns seconds
-		} 
+				return (time / 1000) + " seconds"; // returns seconds
+			
+		}
+		// if the case is inactive (free)
 		else {
 			if (time == 0)
 				return time + "";
@@ -90,12 +80,18 @@ public class Case {
 			else if ((time / 1000) >= 60)
 				return (time / 1000) / 60 + " minutes " + time / 1000 % 60 + " seconds"; // returns minutes and seconds
 			else
-				return (totalTime / 1000) + " seconds"; // returns seconds
+				return (time / 1000) + " seconds"; // returns seconds
 		}
 	}
 
 	public void setStopTime() {
 		stopTime = System.currentTimeMillis();
+		timeList.push(stopTime - startTime);
+		for(Long i: timeList) {
+			totalTime += i;
+		}
+		timeList.pop();
+		stopTime =0;
 	}
 
 	public void setStartTime() {
