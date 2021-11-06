@@ -39,11 +39,15 @@ public class Case {
 	}
 
 	public String getTotalTime() {
-//		for(Long i: timeList) {
-//			totalTime += i;
-//		}
-//		timeList.clear();
-		return totalTime + "";
+			if (totalTime == 0)
+				return totalTime + "";
+			if (totalTime >= 3.6e6)
+				return (totalTime / 1000) / 60 / 60 + " hours " + totalTime / 1000 % 60 + " minutes"; // returns hours and minutes
+			else if ((totalTime / 1000) >= 60)
+				return (totalTime / 1000) / 60 + " minutes " + totalTime / 1000 % 60 + " seconds"; // returns minutes and seconds
+			else
+				return (totalTime / 1000) + " seconds"; // returns seconds
+//		return totalTime + "";
 	}
 
 	public boolean isActive() {
@@ -64,7 +68,7 @@ public class Case {
 			if (time == 0)
 				return time + "";
 			if (time >= 3.6e6)
-				return (time / 1000) / 60 / 60 + " hours " + time / 1000 % 60 + " minutes"; // returns hours and minutes
+				return (time / 1000) / 60 / 60 + " hours " + (time / 1000) / 60 + " minutes"; // returns hours and minutes
 			else if ((time / 1000) >= 60)
 				return (time / 1000) / 60 + " minutes " + time / 1000 % 60 + " seconds"; // returns minutes and seconds
 			else
