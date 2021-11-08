@@ -18,7 +18,7 @@ public class Case {
 	private Button start = new Button("Start");
 	private Button stop = new Button("Stop");
 	private Button refresh = new Button("Refresh");
-	private Button clearCase = new Button("Clear Case");
+	private Button clearCase = new Button("Close Case");
 	public int a=0;
 	private Stack<Long> timeList = new Stack<>();
 

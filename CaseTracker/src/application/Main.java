@@ -17,6 +17,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -89,7 +90,7 @@ public class Main extends Application {
 				// gets the description about the case
 				if (list.size() > 0) {
 					tarea.setText(list.get(i).getTitle() + "\n Date created: " + list.get(i).getDateTime()
-							+ "\n time worked: " + list.get(i).getTimeWorked() + "\n Currently working: "
+							+ "\n Time worked: " + list.get(i).getTimeWorked() + "\n Currently working: "
 							+ list.get(i).isActive() + "\n Total Time: " + list.get(i).getTotalTime());
 					
 					// shows the 'start' and 'stop' buttons
@@ -153,7 +154,7 @@ public class Main extends Application {
 			root.setTop(paneforListView);
 			root.setBottom(casebtns);
 
-			Scene scene = new Scene(root, 450, 350);
+			Scene scene = new Scene(root, 450, 350, Color.GREEN);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
