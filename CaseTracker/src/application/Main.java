@@ -139,6 +139,7 @@ public class Main extends Application {
 							ObservableList<String> items = FXCollections.observableArrayList(titleList);
 							lview.setItems(items);
 						}
+						tarea.setText(" ");
 
 					});
 				}
