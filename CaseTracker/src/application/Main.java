@@ -118,7 +118,7 @@ public class Main extends Application {
 					});
 
 					temp.getRefreshBtn().setOnAction(e -> {
-						tarea.setText(temp.getTitle() + "\n Date created: " + temp.getDateTime() + "\n time worked: "
+						tarea.setText(temp.getTitle() + "\n Date created: " + temp.getDateTime() + "\n Time worked: "
 								+ temp.getTimeWorked() + "\n Currently working: " + temp.isActive() + "\n Total Time: " + temp.getTotalTime());
 					});
 
