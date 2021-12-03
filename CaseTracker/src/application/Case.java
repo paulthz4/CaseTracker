@@ -42,7 +42,7 @@ public class Case {
 			if (totalTime == 0)
 				return totalTime + "";
 			if (totalTime >= 3.6e6)
-				return (totalTime / 1000) / 60 / 60 + " hours " + totalTime / 1000 % 60 + " minutes"; // returns hours and minutes
+				return (totalTime / 1000) / 60 / 60 + " hours " + ((totalTime / 1000) / 60) % 60 + " minutes"; // returns hours and minutes
 			else if ((totalTime / 1000) >= 60)
 				return (totalTime / 1000) / 60 + " minutes " + totalTime / 1000 % 60 + " seconds"; // returns minutes and seconds
 			else
@@ -68,7 +68,7 @@ public class Case {
 			if (time == 0)
 				return time + "";
 			if (time >= 3.6e6)
-				return (time / 1000) / 60 / 60 + " hours " + (time / 1000) / 60 + " minutes"; // returns hours and minutes
+				return (time / 1000) / 60 / 60 % 24 + " hours " + ((time / 1000) / 60) % 60 + " minutes"; // returns hours and minutes
 			else if ((time / 1000) >= 60)
 				return (time / 1000) / 60 + " minutes " + time / 1000 % 60 + " seconds"; // returns minutes and seconds
 			else
@@ -80,7 +80,7 @@ public class Case {
 			if (time == 0)
 				return time + "";
 			if (time >= 3.6e6)
-				return (time / 1000) / 60 / 60 + " hours " + time / 1000 % 60 + " minutes"; // returns hours and minutes
+				return (time / 1000) / 60 / 60 % 24 + " hours " + ((time / 1000) / 60) % 60 + " minutes"; // returns hours and minutes
 			else if ((time / 1000) >= 60)
 				return (time / 1000) / 60 + " minutes " + time / 1000 % 60 + " seconds"; // returns minutes and seconds
 			else
