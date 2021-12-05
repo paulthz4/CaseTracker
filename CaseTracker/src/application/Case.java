@@ -91,9 +91,7 @@ public class Case {
 	public void setStopTime() {
 		stopTime = System.currentTimeMillis();
 		timeList.push(stopTime - startTime);
-//		for(Long i: timeList) {
-//			totalTime += i;
-//		}
+
 		totalTime += timeList.peek();
 		timeList.pop();
 		stopTime =0;
