@@ -24,12 +24,7 @@ public class Main extends Application {
 	private ArrayList<Case> list = new ArrayList<>();
 	private ArrayList<String> titleList = new ArrayList<>();
 	private boolean free = true;
-	// TODO:
-	// stopping and starting again resets the time worked
-	// the stop button turns the working variable to false but doesn't stop the time
-	// worked
-	// add 'close case' button to clear just one instance of an instance
-
+	// TODO: summarize all the times of all the cases
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -51,7 +46,7 @@ public class Main extends Application {
 				// make sure not to make duplicates
 				if (!titleList.contains(field.getText()))
 					list.add(new Case(field.getText()));
-				System.out.println(list.toString());
+				//System.out.println(list.toString());
 				for (Case element : list) {
 					// add the case title to the titleList if it is not already in
 					if (!titleList.contains(element.getTitle()))
@@ -59,7 +54,7 @@ public class Main extends Application {
 				}
 				// adds the case titles to the ListView
 				ObservableList<String> items = FXCollections.observableArrayList(titleList);
-				System.out.println(titleList.toString());
+				//System.out.println(titleList.toString());
 				lview.getItems().clear();
 				lview.setItems(items);
 			});
