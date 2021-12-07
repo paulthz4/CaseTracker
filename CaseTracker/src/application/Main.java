@@ -79,12 +79,14 @@ public class Main extends Application {
 			lview.getSelectionModel().selectedItemProperty().addListener(ov -> {
 				int i = 0;
 				for (String s : titleList) {
-					if (s == lview.getSelectionModel().getSelectedItem())
+					if ( s == lview.getSelectionModel().getSelectedItem() )
 						i = titleList.indexOf(s);
 				}
+				// creates temp case
+				Case temp = list.get(i);
 				// gets the description about the case
 				if (list.size() > 0) {
-					Case temp = list.get(i);
+					
 					tarea.setText(temp.getTitle() + "\n Date created: " + temp.getDateTime()
 							+ "\n Time worked: " + temp.getTimeWorked() + "\n Currently working: "
 							+ temp.isActive() + "\n Total Time: " + temp.getTotalTime());
