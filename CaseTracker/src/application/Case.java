@@ -1,8 +1,6 @@
 package application;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Stack;
 
@@ -60,7 +58,7 @@ public class Case {
 
 	public String getTimeWorked() {
 		long time = 0;
-		long newTime;
+		// long newTime;
 		if (active) {
 			 // the start buttons has been pressed but the stop btn hasn't been pressed
 				time = System.currentTimeMillis() - startTime;
@@ -121,5 +119,13 @@ public class Case {
 	public Button getClearCaseBtn() {
 		clearCase.setStyle("-fx-text-fill: #F43838");
 		return clearCase;
+	}
+	
+	@Override
+	public String toString() {
+		String str = this.getTitle() + "\n" + "\n Date created: " + this.getDateTime()
+		+ "\n Time worked: " + this.getTimeWorked() + "\n Currently working: "
+		+ this.isActive() + "\n Total Time: " + this.getTotalTime() + "\n";
+		return str;
 	}
 }
