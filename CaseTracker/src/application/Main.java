@@ -34,8 +34,9 @@ public class Main extends Application {
 //			vbox.setStyle("-fx-border-color: black");
 			TextField field = new TextField();
 			Button newcasebtn = new Button("New Case");
+			Button summary = new Button("Summary");
 //			Image img = new Image("../images/ventionLogo.png");
-			vbox.getChildren().addAll(new Label("New Case:"), field, newcasebtn);
+			vbox.getChildren().addAll(new Label("New Case:"), field, newcasebtn, summary);
 
 			// create ListView
 			ListView<String> lview = new ListView<>();
@@ -58,7 +59,7 @@ public class Main extends Application {
 				lview.getItems().clear();
 				lview.setItems(items);
 			});
-
+			
 			// displays the case times
 			TextArea tarea = new TextArea();
 			tarea.setEditable(true);
@@ -66,7 +67,16 @@ public class Main extends Application {
 			tarea.setPrefRowCount(8);
 			tarea.setWrapText(true);
 			tarea.setStyle("-fx-padding: 5px; -fx-border-insets: 5px;-fx-background-insets: 5px;");
-
+			
+			// set action on summary button
+			summary.setOnAction(e ->{
+				String str = "";
+				for(Case i: list) {
+					str += i.toString() + "\n";
+				}
+				tarea.setText(str);
+			});
+			
 			// pane for the ListView
 			StackPane paneforListView = new StackPane();
 			paneforListView.setPadding(new Insets(1, 10, 10, 10));
