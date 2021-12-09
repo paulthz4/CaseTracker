@@ -1,6 +1,8 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -71,8 +73,12 @@ public class Main extends Application {
 			// set action on summary button
 			summary.setOnAction(e ->{
 				String str = "";
-				for(Case i: list) {
-					str += i.toString() + "\n";
+//				for(Case i: list) {
+//					str += i.toString() + "\n";
+//				}
+				Iterator<Case> it = list.iterator();
+				while(it.hasNext()) {
+					str += it.next().toString() + "\n";
 				}
 				tarea.setText(str);
 			});
