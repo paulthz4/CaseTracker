@@ -45,7 +45,6 @@ public class Case {
 				return (totalTime / 1000) / 60 + " minutes " + totalTime / 1000 % 60 + " seconds"; // returns minutes and seconds
 			else
 				return (totalTime / 1000) + " seconds"; // returns seconds
-//		return totalTime + "";
 	}
 
 	public boolean isActive() {
@@ -58,7 +57,6 @@ public class Case {
 
 	public String getTimeWorked() {
 		long time = 0;
-		// long newTime;
 		if (active) {
 			 // the start buttons has been pressed but the stop btn hasn't been pressed
 				time = System.currentTimeMillis() - startTime;
@@ -90,8 +88,6 @@ public class Case {
 		stopTime = System.currentTimeMillis();
 		timeList.push(stopTime - startTime);
 		totalTime += timeList.pop();
-//		totalTime += timeList.peek();
-//		timeList.pop();
 		stopTime =0;
 	}
 
