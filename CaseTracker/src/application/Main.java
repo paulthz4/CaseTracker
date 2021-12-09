@@ -24,7 +24,7 @@ public class Main extends Application {
 	private ArrayList<Case> list = new ArrayList<>();
 	private ArrayList<String> titleList = new ArrayList<>();
 	private boolean free = true;
-	// TODO: summarize all the times of all the cases
+	// TODO: 
 	@Override
 	public void start(Stage primaryStage) {
 		try {
