@@ -3,7 +3,6 @@ package application;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Stack;
-
 import javafx.scene.control.Button;
 
 public class Case {
