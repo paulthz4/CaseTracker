@@ -89,7 +89,7 @@ public class Main extends Application {
 			paneforListView.getChildren().add(lview);
 
 			// pane for case button "start", "stop", and 'clear case' btns
-			HBox casebtns = new HBox(8);
+			HBox casebtns = new HBox(15);
 
 			// add listener to ListView
 			lview.getSelectionModel().selectedItemProperty().addListener(ov -> {
