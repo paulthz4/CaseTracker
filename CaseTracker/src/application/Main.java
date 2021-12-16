@@ -26,6 +26,7 @@ public class Main extends Application {
 	private ArrayList<Case> list = new ArrayList<>();
 	private ArrayList<String> titleList = new ArrayList<>();
 	private boolean free = true;
+	private String summaryStr = "";
 	// TODO: 
 	@Override
 	public void start(Stage primaryStage) {
@@ -72,15 +73,14 @@ public class Main extends Application {
 			
 			// set action on summary button
 			summary.setOnAction(e ->{
-				String str = "";
 //				for(Case i: list) {
 //					str += i.toString() + "\n";
 //				}
 				Iterator<Case> it = list.iterator();
 				while(it.hasNext()) {
-					str += it.next().toString() + "\n";
+					summaryStr += it.next().toString() + "\n";
 				}
-				tarea.setText(str);
+				tarea.setText(summaryStr);
 			});
 			
 			// pane for the ListView
