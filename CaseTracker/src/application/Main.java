@@ -85,6 +85,11 @@ public class Main extends Application {
 				tarea.setText(summaryStr);
 			});
 			
+			labels.setOnAction(e->{
+				for(Case i: list) {
+					
+				}
+			});
 			// pane for the ListView
 			StackPane paneforListView = new StackPane();
 			paneforListView.setPadding(new Insets(1, 10, 10, 10));
