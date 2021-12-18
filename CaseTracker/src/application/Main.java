@@ -92,7 +92,8 @@ public class Main extends Application {
 					// TODO: check if the hashmap already contains the key in it (use contains method)
 					if(!map.containsKey(a[1].substring( a[1].length()-1)))
 						map.put(a[1].substring(0, a[1].length()-1), i.getTimeWorked());
-					
+					else 
+						map.replace(a[1].substring(0, a[1].length()-1), map.get(a[1].substring(0, a[1].length()-1))+i.getTimeWorked());
 				}
 				System.out.println(map.toString());
 			});
