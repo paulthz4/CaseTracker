@@ -90,7 +90,9 @@ public class Main extends Application {
 			labels.setOnAction(e->{
 				for(Case i: list) {
 					String[] a = i.getTitle().split("(");
-					map.put(a[1].substring(0, a.length-1), i.getTimeWorked());
+					// TODO: check if the hashmap already contains the key in it (use contains method)
+					if(!map.containsKey(a[1].substring(0, a.length-1)))
+						map.put(a[1].substring(0, a.length-1), i.getTimeWorked());
 					
 				}
 			});
