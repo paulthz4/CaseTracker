@@ -38,6 +38,7 @@ public class Main extends Application {
 			TextField field = new TextField();
 			Button newcasebtn = new Button("New Case");
 			Button summary = new Button("Summary");
+			Button labels = new Button("Labels");
 //			Image img = new Image("../images/ventionLogo.png");
 			vbox.getChildren().addAll(new Label("New Case:"), field, newcasebtn, summary);
 
@@ -80,6 +81,7 @@ public class Main extends Application {
 				while(it.hasNext()) {
 					summaryStr += it.next().toString() + "\n";
 				}
+				String[] a = summaryStr.split("(");
 				tarea.setText(summaryStr);
 			});
 			
