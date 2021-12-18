@@ -1,6 +1,7 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 import javafx.application.Application;
@@ -27,6 +28,7 @@ public class Main extends Application {
 	private ArrayList<String> titleList = new ArrayList<>();
 	private boolean free = true;
 	private String summaryStr = "";
+	private HashMap<String,String> map = new HashMap<>();
 	// TODO: 
 	@Override
 	public void start(Stage primaryStage) {
@@ -87,6 +89,8 @@ public class Main extends Application {
 			
 			labels.setOnAction(e->{
 				for(Case i: list) {
+					String[] a = i.getTitle().split("(");
+					map.put(a[1].substring(0, a.length-1), i.getTimeWorked());
 					
 				}
 			});
