@@ -42,7 +42,7 @@ public class Main extends Application {
 			Button summary = new Button("Summary");
 			Button labels = new Button("Labels");
 //			Image img = new Image("../images/ventionLogo.png");
-			vbox.getChildren().addAll(new Label("New Case:"), field, newcasebtn, summary);
+			vbox.getChildren().addAll(new Label("New Case:"), field, newcasebtn, summary, labels);
 
 			// create ListView
 			ListView<String> lview = new ListView<>();
@@ -83,18 +83,18 @@ public class Main extends Application {
 				while(it.hasNext()) {
 					summaryStr += it.next().toString() + "\n";
 				}
-				String[] a = summaryStr.split("(");
 				tarea.setText(summaryStr);
 			});
 			
 			labels.setOnAction(e->{
 				for(Case i: list) {
-					String[] a = i.getTitle().split("(");
+					String[] a = i.getTitle().split("\\(",0);
 					// TODO: check if the hashmap already contains the key in it (use contains method)
-					if(!map.containsKey(a[1].substring(0, a.length-1)))
-						map.put(a[1].substring(0, a.length-1), i.getTimeWorked());
+					if(!map.containsKey(a[1].substring( a[1].length()-1)))
+						map.put(a[1].substring(0, a[1].length()-1), i.getTimeWorked());
 					
 				}
+				System.out.println(map.toString());
 			});
 			// pane for the ListView
 			StackPane paneforListView = new StackPane();
