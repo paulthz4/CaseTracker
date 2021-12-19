@@ -79,6 +79,7 @@ public class Main extends Application {
 //				for(Case i: list) {
 //					str += i.toString() + "\n";
 //				}
+				summaryStr = "";
 				Iterator<Case> it = list.iterator();
 				while(it.hasNext()) {
 					summaryStr += it.next().toString() + "\n";
