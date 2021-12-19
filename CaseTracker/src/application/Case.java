@@ -45,7 +45,9 @@ public class Case {
 			else
 				return (totalTime / 1000) + " seconds"; // returns seconds
 	}
-
+	public Long getTotalTimeOnly() {
+		return totalTime;
+	}
 	public boolean isActive() {
 		return active;
 	}

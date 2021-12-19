@@ -28,7 +28,7 @@ public class Main extends Application {
 	private ArrayList<String> titleList = new ArrayList<>();
 	private boolean free = true;
 	private String summaryStr = "";
-	private HashMap<String,String> map = new HashMap<>();
+	private HashMap<String,Long> map = new HashMap<>();
 	// TODO: 
 	@Override
 	public void start(Stage primaryStage) {
@@ -92,9 +92,9 @@ public class Main extends Application {
 					String[] a = i.getTitle().split("\\(",0);
 					// TODO: check if the hashmap already contains the key in it (use contains method)
 					if(!map.containsKey(a[1].substring( a[1].length()-1)))
-						map.put(a[1].substring(0, a[1].length()-1), i.getTimeWorked());
+						map.put(a[1].substring(0, a[1].length()-1), i.getTotalTimeOnly());
 					else 
-						map.replace(a[1].substring(0, a[1].length()-1), map.get(a[1].substring(0, a[1].length()-1))+i.getTimeWorked());
+						map.replace(a[1].substring(0, a[1].length()-1), map.get(a[1].substring(0, a[1].length()-1))+i.getTotalTimeOnly());
 				}
 				System.out.println(map.toString());
 			});
