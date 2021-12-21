@@ -41,9 +41,8 @@ public class Main extends Application {
 			TextField field = new TextField();
 			Button newcasebtn = new Button("New Case");
 			Button summary = new Button("Summary");
-			Button labels = new Button("Labels");
 //			Image img = new Image("../images/ventionLogo.png");
-			vbox.getChildren().addAll(new Label("New Case:"), field, newcasebtn, summary, labels);
+			vbox.getChildren().addAll(new Label("New Case:"), field, newcasebtn, summary);
 
 			// create ListView
 			ListView<String> lview = new ListView<>();
@@ -110,19 +109,6 @@ public class Main extends Application {
 				tarea.setText(summaryStr + "\n Total Time for all is " + s);
 			});
 
-			labels.setOnAction(e -> {
-				for (Case i : list) {
-					String[] a = i.getTitle().split("\\(", 0);
-					// TODO: check if the hashmap already contains the key in it (use contains
-					// method)
-					if (!map.containsKey(a[1].substring(a[1].length() - 1)))
-						map.put(a[1].substring(0, a[1].length() - 1), i.getTotalTimeOnly());
-					else
-						map.replace(a[1].substring(0, a[1].length() - 1),
-								map.get(a[1].substring(0, a[1].length() - 1)) + i.getTotalTimeOnly());
-				}
-				System.out.println(map.toString());
-			});
 			// pane for the ListView
 			StackPane paneforListView = new StackPane();
 			paneforListView.setPadding(new Insets(1, 10, 10, 10));
