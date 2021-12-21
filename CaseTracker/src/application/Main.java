@@ -28,8 +28,9 @@ public class Main extends Application {
 	private ArrayList<String> titleList = new ArrayList<>();
 	private boolean free = true;
 	private String summaryStr = "";
-	private HashMap<String,Long> map = new HashMap<>();
-	// TODO: 
+	private HashMap<String, Long> map = new HashMap<>();
+
+	// TODO:
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -53,7 +54,7 @@ public class Main extends Application {
 				// make sure not to make duplicates
 				if (!titleList.contains(field.getText()))
 					list.add(new Case(field.getText()));
-				//System.out.println(list.toString());
+				// System.out.println(list.toString());
 				for (Case element : list) {
 					// add the case title to the titleList if it is not already in
 					if (!titleList.contains(element.getTitle()))
@@ -61,11 +62,11 @@ public class Main extends Application {
 				}
 				// adds the case titles to the ListView
 				ObservableList<String> items = FXCollections.observableArrayList(titleList);
-				//System.out.println(titleList.toString());
+				// System.out.println(titleList.toString());
 				lview.getItems().clear();
 				lview.setItems(items);
 			});
-			
+
 			// displays the case times
 			TextArea tarea = new TextArea();
 			tarea.setEditable(true);
@@ -73,39 +74,44 @@ public class Main extends Application {
 			tarea.setPrefRowCount(8);
 			tarea.setWrapText(true);
 			tarea.setStyle("-fx-padding: 5px; -fx-border-insets: 5px;-fx-background-insets: 5px;");
-			
+
 			// set action on summary button
-			summary.setOnAction(e ->{
+			summary.setOnAction(e -> {
 				summaryStr = "";
 				long totalTime = 0;
-				for(Case i: list) {
+				for (Case i : list) {
 					summaryStr += i.toString() + "\n";
 					totalTime += i.getTotalTimeOnly();
-					
-					
-					String[] a = i.getTitle().split("\\(",0);
-					// TODO: check if the hashmap already contains the key in it (use contains method)
-					if(!map.containsKey(a[1].substring( a[1].length()-1)))
-						map.put(a[1].substring(0, a[1].length()-1), i.getTotalTimeOnly());
-					else 
-						map.replace(a[1].substring(0, a[1].length()-1), map.get(a[1].substring(0, a[1].length()-1))+i.getTotalTimeOnly());
+
+					if (tarea.getText().contains("(")) {
+						String[] a = i.getTitle().split("\\(", 0);
+						// TODO: check if the hashmap already contains the key in it (use contains
+						// method)
+						if (!map.containsKey(a[1].substring(a[1].length() - 1)))
+							map.put(a[1].substring(0, a[1].length() - 1), i.getTotalTimeOnly());
+						else
+							map.replace(a[1].substring(0, a[1].length() - 1),
+									map.get(a[1].substring(0, a[1].length() - 1)) + i.getTotalTimeOnly());
+					}
 				}
 				System.out.println(map.toString());
 //				Iterator<Case> it = list.iterator();
 //				while(it.hasNext()) {
 //					summaryStr += it.next().toString() + "\n";
 //				}
-				tarea.setText(summaryStr + "\n Total Time for all is "+ totalTime);
+				tarea.setText(summaryStr + "\n Total Time for all is " + totalTime);
 			});
-			
-			labels.setOnAction(e->{
-				for(Case i: list) {
-					String[] a = i.getTitle().split("\\(",0);
-					// TODO: check if the hashmap already contains the key in it (use contains method)
-					if(!map.containsKey(a[1].substring( a[1].length()-1)))
-						map.put(a[1].substring(0, a[1].length()-1), i.getTotalTimeOnly());
-					else 
-						map.replace(a[1].substring(0, a[1].length()-1), map.get(a[1].substring(0, a[1].length()-1))+i.getTotalTimeOnly());
+
+			labels.setOnAction(e -> {
+				for (Case i : list) {
+					String[] a = i.getTitle().split("\\(", 0);
+					// TODO: check if the hashmap already contains the key in it (use contains
+					// method)
+					if (!map.containsKey(a[1].substring(a[1].length() - 1)))
+						map.put(a[1].substring(0, a[1].length() - 1), i.getTotalTimeOnly());
+					else
+						map.replace(a[1].substring(0, a[1].length() - 1),
+								map.get(a[1].substring(0, a[1].length() - 1)) + i.getTotalTimeOnly());
 				}
 				System.out.println(map.toString());
 			});
@@ -121,21 +127,21 @@ public class Main extends Application {
 			lview.getSelectionModel().selectedItemProperty().addListener(ov -> {
 				int i = 0;
 				for (String s : titleList) {
-					if ( s == lview.getSelectionModel().getSelectedItem() )
+					if (s == lview.getSelectionModel().getSelectedItem())
 						i = titleList.indexOf(s);
 				}
 				// creates temp case
 				Case temp = list.get(i);
 				// gets the description about the case
 				if (list.size() > 0) {
-					
+
 					tarea.setText(temp.toString());
-					
+
 					// shows the 'start' and 'stop' buttons
 					casebtns.getChildren().clear();
 					casebtns.getChildren().addAll(list.get(i).getStartBtn(), list.get(i).getStopBtn(),
 							list.get(i).getRefreshBtn(), list.get(i).getClearCaseBtn());
-					
+
 					temp.getStartBtn().setOnAction(e -> {
 						if (free) {
 							temp.setActive(true);
