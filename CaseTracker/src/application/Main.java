@@ -76,15 +76,26 @@ public class Main extends Application {
 			
 			// set action on summary button
 			summary.setOnAction(e ->{
-//				for(Case i: list) {
-//					str += i.toString() + "\n";
-//				}
 				summaryStr = "";
-				Iterator<Case> it = list.iterator();
-				while(it.hasNext()) {
-					summaryStr += it.next().toString() + "\n";
+				long totalTime = 0;
+				for(Case i: list) {
+					summaryStr += i.toString() + "\n";
+					totalTime += i.getTotalTimeOnly();
+					
+					
+					String[] a = i.getTitle().split("\\(",0);
+					// TODO: check if the hashmap already contains the key in it (use contains method)
+					if(!map.containsKey(a[1].substring( a[1].length()-1)))
+						map.put(a[1].substring(0, a[1].length()-1), i.getTotalTimeOnly());
+					else 
+						map.replace(a[1].substring(0, a[1].length()-1), map.get(a[1].substring(0, a[1].length()-1))+i.getTotalTimeOnly());
 				}
-				tarea.setText(summaryStr);
+				System.out.println(map.toString());
+//				Iterator<Case> it = list.iterator();
+//				while(it.hasNext()) {
+//					summaryStr += it.next().toString() + "\n";
+//				}
+				tarea.setText(summaryStr + "\n Total Time for all is "+ totalTime);
 			});
 			
 			labels.setOnAction(e->{
