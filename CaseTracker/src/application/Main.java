@@ -79,27 +79,35 @@ public class Main extends Application {
 			summary.setOnAction(e -> {
 				summaryStr = "";
 				long totalTime = 0;
+				String s = "";
 				for (Case i : list) {
 					summaryStr += i.toString() + "\n";
 					totalTime += i.getTotalTimeOnly();
-
-					if (tarea.getText().contains("(")) {
-						String[] a = i.getTitle().split("\\(", 0);
-						// TODO: check if the hashmap already contains the key in it (use contains
-						// method)
-						if (!map.containsKey(a[1].substring(a[1].length() - 1)))
-							map.put(a[1].substring(0, a[1].length() - 1), i.getTotalTimeOnly());
-						else
-							map.replace(a[1].substring(0, a[1].length() - 1),
-									map.get(a[1].substring(0, a[1].length() - 1)) + i.getTotalTimeOnly());
-					}
+//					if (tarea.getText().contains("(")) {
+//						String[] a = i.getTitle().split("\\(", 0);
+//						// TODO: check if the hashmap already contains the key in it (use contains
+//						// method)
+//						if (!map.containsKey(a[1].substring(a[1].length() - 1)))
+//							map.put(a[1].substring(0, a[1].length() - 1), i.getTotalTimeOnly());
+//						else
+//							map.replace(a[1].substring(0, a[1].length() - 1),
+//									map.get(a[1].substring(0, a[1].length() - 1)) + i.getTotalTimeOnly());
+//					}
 				}
 				System.out.println(map.toString());
 //				Iterator<Case> it = list.iterator();
 //				while(it.hasNext()) {
 //					summaryStr += it.next().toString() + "\n";
 //				}
-				tarea.setText(summaryStr + "\n Total Time for all is " + totalTime);
+				if (totalTime == 0)
+					 s += totalTime + "";
+				if (totalTime >= 3.6e6)
+					s += (totalTime / 1000) / 60 / 60 % 24 + " hours " + ((totalTime / 1000) / 60) % 60 + " minutes"; // returns hours and minutes
+				else if ((totalTime / 1000) >= 60)
+					s += (totalTime / 1000) / 60 + " minutes " + totalTime / 1000 % 60 + " seconds"; // returns minutes and seconds
+				else
+					s += (totalTime / 1000) + " seconds"; // returns seconds
+				tarea.setText(summaryStr + "\n Total Time for all is " + s);
 			});
 
 			labels.setOnAction(e -> {
