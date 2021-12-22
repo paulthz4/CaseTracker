@@ -30,7 +30,6 @@ public class Main extends Application {
 	private String summaryStr = "";
 	private HashMap<String, Long> map = new HashMap<>();
 
-	// TODO:
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -94,10 +93,6 @@ public class Main extends Application {
 //					}
 				}
 				System.out.println(map.toString());
-//				Iterator<Case> it = list.iterator();
-//				while(it.hasNext()) {
-//					summaryStr += it.next().toString() + "\n";
-//				}
 				if (totalTime == 0)
 					 s += totalTime + "";
 				if (totalTime >= 3.6e6)
@@ -192,7 +187,7 @@ public class Main extends Application {
 			root.setTop(paneforListView);
 			root.setBottom(casebtns);
 
-			Scene scene = new Scene(root, 450, 400, Color.GREEN);
+			Scene scene = new Scene(root, 450, 400);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
