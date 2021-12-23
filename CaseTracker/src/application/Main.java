@@ -101,7 +101,7 @@ public class Main extends Application {
 					s += (totalTime / 1000) / 60 + " minutes " + totalTime / 1000 % 60 + " seconds"; // returns minutes and seconds
 				else
 					s += (totalTime / 1000) + " seconds"; // returns seconds
-				tarea.setText(summaryStr + "\n Total Time for all is " + s);
+				tarea.setText(summaryStr + "Total Time for all is " + s);
 			});
 
 			// pane for the ListView
