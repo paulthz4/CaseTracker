@@ -28,7 +28,7 @@ public class Main extends Application {
 	private ArrayList<String> titleList = new ArrayList<>();
 	private boolean free = true;
 	private String summaryStr = "";
-	private HashMap<String, Long> map = new HashMap<>();
+//	private HashMap<String, Long> map = new HashMap<>();
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -92,7 +92,7 @@ public class Main extends Application {
 //									map.get(a[1].substring(0, a[1].length() - 1)) + i.getTotalTimeOnly());
 //					}
 				}
-				System.out.println(map.toString());
+//				System.out.println(map.toString());
 				if (totalTime == 0)
 					 s += totalTime + "";
 				if (totalTime >= 3.6e6)
