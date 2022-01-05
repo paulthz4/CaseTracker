@@ -30,7 +30,7 @@ public class Case {
 	}
 
 	public String getDateTime() {
-		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("E, MMM dd yyyy HH:mm:ss");
+		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("E MMM dd yyyy HH:mm:ss");
 		String formattedDate = myDateObj.format(myFormatObj);
 		return formattedDate;
 	}
