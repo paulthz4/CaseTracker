@@ -36,11 +36,9 @@ public class Main extends Application {
 			// pane for creating the cases
 			VBox vbox = new VBox(15);
 			vbox.setPadding(new Insets(15, 15, 15, 15));
-//			vbox.setStyle("-fx-border-color: black");
 			TextField field = new TextField();
 			Button newcasebtn = new Button("New Case");
 			Button summary = new Button("Summary");
-//			Image img = new Image("../images/ventionLogo.png");
 			vbox.getChildren().addAll(new Label("New Case:"), field, newcasebtn, summary);
 
 			// create ListView
