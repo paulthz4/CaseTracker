@@ -7,6 +7,7 @@ import java.util.Iterator;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -102,6 +103,8 @@ public class Main extends Application {
 				tarea.setText(summaryStr + "Total Time for all is " + s);
 			});
 
+			//add search bar above list view
+//			FilteredList<Case> search = new FilteredList<>();
 			// pane for the ListView
 			StackPane paneforListView = new StackPane();
 			paneforListView.setPadding(new Insets(1, 10, 10, 10));
