@@ -62,6 +62,7 @@ public class Main extends Application {
 				// System.out.println(titleList.toString());
 				lview.getItems().clear();
 				lview.setItems(items);
+				field.setText("");
 			});
 
 			// displays the case times
