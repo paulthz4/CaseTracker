@@ -105,6 +105,7 @@ public class Main extends Application {
 
 			//add search bar above list view
 //			FilteredList<Case> search = new FilteredList<>();
+			// TODO: make search bar retrieve current case
 			// pane for the ListView
 			StackPane paneforListView = new StackPane();
 			paneforListView.setPadding(new Insets(1, 10, 10, 10));
