@@ -45,7 +45,10 @@ public class Main extends Application {
 			// create ListView
 			ListView<String> lview = new ListView<>();
 			lview.setPrefSize(20, 110);
-
+			
+			// adds the case titles to the ListView
+			ObservableList<String> items = FXCollections.observableArrayList(titleList);
+			
 			// register and handle 'new case' button
 			newcasebtn.setOnAction(e -> {
 				// make sure not to make duplicates
@@ -57,8 +60,7 @@ public class Main extends Application {
 					if (!titleList.contains(element.getTitle()))
 						titleList.add(element.getTitle());
 				}
-				// adds the case titles to the ListView
-				ObservableList<String> items = FXCollections.observableArrayList(titleList);
+				
 				// System.out.println(titleList.toString());
 				lview.getItems().clear();
 				lview.setItems(items);
@@ -105,7 +107,7 @@ public class Main extends Application {
 			});
 
 			//add search bar above list view
-//			FilteredList<Case> search = new FilteredList<>();
+			FilteredList<String> search = new FilteredList<>(items);
 			// TODO: make search bar retrieve current case
 			// pane for the ListView
 			StackPane paneforListView = new StackPane();
@@ -165,13 +167,13 @@ public class Main extends Application {
 							list.remove(index);
 							lview.getSelectionModel().clearAndSelect(1);
 							lview.getItems().remove(index);
-							ObservableList<String> items = FXCollections.observableArrayList(titleList);
+							//ObservableList<String> items = FXCollections.observableArrayList(titleList);
 							lview.setItems(items);
 						} else if (titleList.size() == 1) {
 							titleList.clear();
 							list.clear();
 							lview.getSelectionModel().clearSelection();
-							ObservableList<String> items = FXCollections.observableArrayList(titleList);
+							//ObservableList<String> items = FXCollections.observableArrayList(titleList);
 							lview.setItems(items);
 						}
 						tarea.setText(" ");
