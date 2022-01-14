@@ -1,26 +1,48 @@
 package application;
 
+import java.util.stream.IntStream;
+
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.geometry.Insets;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class CaseForm extends VBox{
-	public CaseForm() {
-		//style and padding
-		setPadding(new Insets(10,10,10,10));
-		setStyle("-fx-border-color: black");
-		//add text-field and button
-		TextField newcase = new TextField();
-		getChildren().addAll(new Label("Case:"), new TextField(), new Button("create new case"));
-		getChildren().addAll(new Button("Case 1"), new Button("Case 2"));
-		System.out.println("Create case button was pressed");
+	public void start(Stage primaryStage) {
+
+	    ObservableList<String> data = FXCollections.observableArrayList();
+	    IntStream.range(0, 1000).mapToObj(Integer::toString).forEach(data::add);
+
+	    FilteredList<String> filteredData = new FilteredList<>(data, s -> true);
+
+	    TextField filterInput = new TextField();
+	    filterInput.textProperty().addListener(obs->{
+	        String filter = filterInput.getText(); 
+	        if(filter == null || filter.length() == 0) {
+	            filteredData.setPredicate(s -> true);
+	        }
+	        else {
+	            filteredData.setPredicate(s -> s.contains(filter));
+	        }
+	    });
+
+
+	    BorderPane content = new BorderPane(new ListView<>(filteredData));
+	    content.setBottom(filterInput);
+
+	    Scene scene = new Scene(content, 500, 500);
+	    primaryStage.setScene(scene);
+	    primaryStage.show();
 	}
-	
 
 }

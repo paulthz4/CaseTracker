@@ -45,10 +45,7 @@ public class Main extends Application {
 			// create ListView
 			ListView<String> lview = new ListView<>();
 			lview.setPrefSize(20, 110);
-			
-			// adds the case titles to the ListView
-			ObservableList<String> items = FXCollections.observableArrayList(titleList);
-			
+
 			// register and handle 'new case' button
 			newcasebtn.setOnAction(e -> {
 				// make sure not to make duplicates
@@ -60,7 +57,8 @@ public class Main extends Application {
 					if (!titleList.contains(element.getTitle()))
 						titleList.add(element.getTitle());
 				}
-				
+				// adds the case titles to the ListView
+				ObservableList<String> items = FXCollections.observableArrayList(titleList);
 				// System.out.println(titleList.toString());
 				lview.getItems().clear();
 				lview.setItems(items);
@@ -107,12 +105,15 @@ public class Main extends Application {
 			});
 
 			//add search bar above list view
-			FilteredList<String> search = new FilteredList<>(items);
+			ObservableList<String> itemsTemp = FXCollections.observableArrayList(titleList);
+
+			FilteredList<String> search = new FilteredList<>(itemsTemp);
+			TextField searchBar = new TextField();
 			// TODO: make search bar retrieve current case
 			// pane for the ListView
-			StackPane paneforListView = new StackPane();
+			VBox paneforListView = new VBox(10);
 			paneforListView.setPadding(new Insets(1, 10, 10, 10));
-			paneforListView.getChildren().add(lview);
+			paneforListView.getChildren().addAll(searchBar, lview);
 
 			// pane for case button "start", "stop", and 'clear case' btns
 			HBox casebtns = new HBox(15);
@@ -167,13 +168,13 @@ public class Main extends Application {
 							list.remove(index);
 							lview.getSelectionModel().clearAndSelect(1);
 							lview.getItems().remove(index);
-							//ObservableList<String> items = FXCollections.observableArrayList(titleList);
+							ObservableList<String> items = FXCollections.observableArrayList(titleList);
 							lview.setItems(items);
 						} else if (titleList.size() == 1) {
 							titleList.clear();
 							list.clear();
 							lview.getSelectionModel().clearSelection();
-							//ObservableList<String> items = FXCollections.observableArrayList(titleList);
+							ObservableList<String> items = FXCollections.observableArrayList(titleList);
 							lview.setItems(items);
 						}
 						tarea.setText(" ");
