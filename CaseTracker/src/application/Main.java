@@ -49,14 +49,11 @@ public class Main extends Application {
 			// register and handle 'new case' button
 			newcasebtn.setOnAction(e -> {
 				// make sure not to make duplicates
-				if (!titleList.contains(field.getText()))
+				if (!titleList.contains(field.getText())) {
 					list.add(new Case(field.getText()));
-				// System.out.println(list.toString());
-				for (Case element : list) {
-					// add the case title to the titleList if it is not already in
-					if (!titleList.contains(element.getTitle()))
-						titleList.add(element.getTitle());
+					titleList.add(field.getText());
 				}
+//				 System.out.println(list.toString());
 				// adds the case titles to the ListView
 				ObservableList<String> items = FXCollections.observableArrayList(titleList);
 				// System.out.println(titleList.toString());
@@ -94,27 +91,31 @@ public class Main extends Application {
 				}
 //				System.out.println(map.toString());
 				if (totalTime == 0)
-					 s += totalTime + "";
+					s += totalTime + "";
 				if (totalTime >= 3.6e6)
-					s += (totalTime / 1000) / 60 / 60 % 24 + " hours " + ((totalTime / 1000) / 60) % 60 + " minutes"; // returns hours and minutes
+					s += (totalTime / 1000) / 60 / 60 % 24 + " hours " + ((totalTime / 1000) / 60) % 60 + " minutes"; // returns
+																														// hours
+																														// and
+																														// minutes
 				else if ((totalTime / 1000) >= 60)
-					s += (totalTime / 1000) / 60 + " minutes " + totalTime / 1000 % 60 + " seconds"; // returns minutes and seconds
+					s += (totalTime / 1000) / 60 + " minutes " + totalTime / 1000 % 60 + " seconds"; // returns minutes
+																										// and seconds
 				else
 					s += (totalTime / 1000) + " seconds"; // returns seconds
 				tarea.setText(summaryStr + "Total Time for all is " + s);
 			});
 
-			//add search bar above list view
+			// add search bar above list view
 			ObservableList<String> itemsTemp = FXCollections.observableArrayList(titleList);
-			// find a way to declare the ListView to have global scope and 
+			// find a way to declare the ListView to have global scope and
 			FilteredList<String> data = new FilteredList<>(itemsTemp, s -> true);
 			TextField searchBar = new TextField();
 			searchBar.textProperty().addListener(obs -> {
 				String filter = searchBar.getText();
-				if(filter == null || filter.length() == 0) {
+				if (filter == null || filter.length() == 0) {
 					data.setPredicate(s -> true);
-				}
-				else data.setPredicate(s -> s.contains(filter));
+				} else
+					data.setPredicate(s -> s.contains(filter));
 			});
 			// TODO: make search bar retrieve current case
 			// pane for the ListView
