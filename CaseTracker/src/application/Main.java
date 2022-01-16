@@ -107,8 +107,15 @@ public class Main extends Application {
 			//add search bar above list view
 			ObservableList<String> itemsTemp = FXCollections.observableArrayList(titleList);
 
-			FilteredList<String> search = new FilteredList<>(itemsTemp);
+			FilteredList<String> data = new FilteredList<>(itemsTemp, s -> true);
 			TextField searchBar = new TextField();
+			searchBar.textProperty().addListener(obs -> {
+				String filter = searchBar.getText();
+				if(filter == null || filter.length() == 0) {
+					data.setPredicate(s -> true);
+				}
+				else data.setPredicate(s -> s.contains(filter));
+			});
 			// TODO: make search bar retrieve current case
 			// pane for the ListView
 			VBox paneforListView = new VBox(10);
