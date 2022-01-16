@@ -106,7 +106,7 @@ public class Main extends Application {
 
 			//add search bar above list view
 			ObservableList<String> itemsTemp = FXCollections.observableArrayList(titleList);
-
+			// find a way to declare the ListView to have global scope and 
 			FilteredList<String> data = new FilteredList<>(itemsTemp, s -> true);
 			TextField searchBar = new TextField();
 			searchBar.textProperty().addListener(obs -> {
