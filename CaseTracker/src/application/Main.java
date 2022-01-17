@@ -40,8 +40,9 @@ public class Main extends Application {
 			TextField field = new TextField();
 			Button newcasebtn = new Button("New Case");
 			Button summary = new Button("Summary");
-			Label activeCase = new Label("Active case: ");
-			vbox.getChildren().addAll(new Label("New Case:"), field, newcasebtn, summary, activeCase);
+			Label activeCaseLabel = new Label("Active case: ");
+			Label activeCase = new Label("");
+			vbox.getChildren().addAll(new Label("New Case:"), field, newcasebtn, summary, activeCaseLabel, activeCase);
 
 			// create ListView
 			ListView<String> lview = new ListView<>();
@@ -147,7 +148,7 @@ public class Main extends Application {
 							list.get(i).getRefreshBtn(), list.get(i).getClearCaseBtn());
 
 					temp.getStartBtn().setOnAction(e -> {
-						if (free) {
+						if (free == true) {
 							temp.setActive(true);
 							free = false;
 							temp.setStartTime();
@@ -157,7 +158,7 @@ public class Main extends Application {
 					});
 
 					temp.getStopBtn().setOnAction(e -> {
-						if (!free) {
+						if (free == false && temp.getTitle() == activeCase.getText()) {
 							temp.setActive(false);
 							free = true;
 							temp.setStopTime();
@@ -169,7 +170,8 @@ public class Main extends Application {
 
 					temp.getRefreshBtn().setOnAction(e -> {
 						// set condition to check if free to set active and then refresh
-						tarea.setText(temp.toString());
+//						if( temp.getTitle() == activeCase.getText())
+							tarea.setText(temp.toString());
 					});
 
 					temp.getClearCaseBtn().setOnAction(e -> {
@@ -205,7 +207,7 @@ public class Main extends Application {
 			root.setTop(paneforListView);
 			root.setBottom(casebtns);
 
-			Scene scene = new Scene(root, 450, 400);
+			Scene scene = new Scene(root, 440, 440);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
