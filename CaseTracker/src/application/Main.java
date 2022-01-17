@@ -40,7 +40,7 @@ public class Main extends Application {
 			TextField field = new TextField();
 			Button newcasebtn = new Button("New Case");
 			Button summary = new Button("Summary");
-			Label activeCase = new Label("");
+			Label activeCase = new Label("Active case: ");
 			vbox.getChildren().addAll(new Label("New Case:"), field, newcasebtn, summary, activeCase);
 
 			// create ListView
