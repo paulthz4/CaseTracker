@@ -133,6 +133,7 @@ public class test extends Application {
 							free = false;
 							temp.setStartTime();
 							temp.a += 1;
+							activeCase.setText(temp.getTitle());
 						}
 					});
 
@@ -142,6 +143,7 @@ public class test extends Application {
 							free = true;
 							temp.setStopTime();
 							temp.a += 1;
+							activeCase.setText("");
 						}
 
 					});

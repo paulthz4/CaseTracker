@@ -40,7 +40,8 @@ public class Main extends Application {
 			TextField field = new TextField();
 			Button newcasebtn = new Button("New Case");
 			Button summary = new Button("Summary");
-			vbox.getChildren().addAll(new Label("New Case:"), field, newcasebtn, summary);
+			Label activeCase = new Label("");
+			vbox.getChildren().addAll(new Label("New Case:"), field, newcasebtn, summary, activeCase);
 
 			// create ListView
 			ListView<String> lview = new ListView<>();
@@ -151,6 +152,7 @@ public class Main extends Application {
 							free = false;
 							temp.setStartTime();
 							temp.a += 1;
+							activeCase.setText(temp.getTitle());
 						}
 					});
 
@@ -160,11 +162,13 @@ public class Main extends Application {
 							free = true;
 							temp.setStopTime();
 							temp.a += 1;
+							activeCase.setText("");
 						}
 
 					});
 
 					temp.getRefreshBtn().setOnAction(e -> {
+						// set condition to check if free to set active and then refresh
 						tarea.setText(temp.toString());
 					});
 
