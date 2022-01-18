@@ -185,7 +185,7 @@ public class test extends Application {
 			root.setTop(paneforListView);
 			root.setBottom(casebtns);
 
-			Scene scene = new Scene(root, 450, 400);
+			Scene scene = new Scene(root, 450, 450);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();

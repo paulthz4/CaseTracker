@@ -1,9 +1,6 @@
 package application;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,13 +12,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-//import javafx.scene.image.Image;
-//import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -68,7 +61,7 @@ public class Main extends Application {
 			TextArea tarea = new TextArea();
 			tarea.setEditable(true);
 			tarea.setPrefColumnCount(5);
-			tarea.setPrefRowCount(8);
+			tarea.setPrefRowCount(6);
 			tarea.setWrapText(true);
 			tarea.setStyle("-fx-padding: 5px; -fx-border-insets: 5px;-fx-background-insets: 5px;");
 
@@ -123,7 +116,7 @@ public class Main extends Application {
 			// pane for the ListView
 			VBox paneforListView = new VBox(10);
 			paneforListView.setPadding(new Insets(1, 10, 10, 10));
-			paneforListView.getChildren().addAll(searchBar, lview);
+			paneforListView.getChildren().addAll( lview);
 
 			// pane for case button "start", "stop", and 'clear case' btns
 			HBox casebtns = new HBox(15);
@@ -208,7 +201,7 @@ public class Main extends Application {
 			root.setTop(paneforListView);
 			root.setBottom(casebtns);
 
-			Scene scene = new Scene(root, 440, 440);
+			Scene scene = new Scene(root, 430, 400);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
