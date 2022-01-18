@@ -32,8 +32,9 @@ public class test extends Application {
 			TextField field = new TextField();
 			Button newcasebtn = new Button("New Case");
 			Button summary = new Button("Summary");
+			Label activeCaseLabel = new Label("Active case: ");
 			Label activeCase = new Label("");
-			vbox.getChildren().addAll(new Label("New Case:"), field, newcasebtn, summary, activeCase);
+			vbox.getChildren().addAll(new Label("New Case:"), field, newcasebtn, summary, activeCaseLabel, activeCase);
 
 			// create ListView
 			ListView<String> lview = new ListView<>();
@@ -138,12 +139,13 @@ public class test extends Application {
 					});
 
 					temp.getStopBtn().setOnAction(e -> {
-						if (!free) {
+						if (!free && temp.getTitle() == activeCase.getText()) {
 							temp.setActive(false);
 							free = true;
 							temp.setStopTime();
 							temp.a += 1;
 							activeCase.setText("");
+							tarea.setText(temp.toString());
 						}
 
 					});
