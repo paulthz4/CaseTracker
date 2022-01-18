@@ -164,6 +164,7 @@ public class Main extends Application {
 							temp.setStopTime();
 							temp.a += 1;
 							activeCase.setText("");
+							tarea.setText(temp.toString());
 						}
 
 					});
