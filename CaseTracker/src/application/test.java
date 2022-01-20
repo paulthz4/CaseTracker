@@ -67,11 +67,9 @@ public class test extends Application {
 				}
 				 System.out.println(list.toString());
 				// adds the case titles to the ListView
-				ObservableList<String> items = FXCollections.observableArrayList(titleList); // *** this is no longer used
-				itemsTemp.setAll(titleList);		// *** now uses this
 				// System.out.println(titleList.toString());
 				lview.getItems().clear();
-				lview.setItems(itemsTemp);
+				lview.setItems(FXCollections.observableArrayList(titleList));
 				field.setText("");
 			});
 
@@ -163,13 +161,11 @@ public class test extends Application {
 							list.remove(index);
 							lview.getSelectionModel().clearAndSelect(1);
 							lview.getItems().remove(index);
-							ObservableList<String> items = FXCollections.observableArrayList(titleList);
 							lview.setItems(itemsTemp);
 						} else if (titleList.size() == 1) {
 							titleList.clear();
 							list.clear();
 							lview.getSelectionModel().clearSelection();
-							ObservableList<String> items = FXCollections.observableArrayList(titleList);
 							lview.setItems(itemsTemp);
 						}
 						tarea.setText(" ");
