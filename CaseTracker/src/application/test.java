@@ -161,7 +161,7 @@ public class test extends Application {
 							list.remove(index);
 							lview.getSelectionModel().clearAndSelect(1);
 							lview.getItems().remove(index);
-							lview.setItems(itemsTemp);
+							lview.setItems(FXCollections.observableArrayList(titleList));
 						} else if (titleList.size() == 1) {
 							titleList.clear();
 							list.clear();
