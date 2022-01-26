@@ -1,5 +1,6 @@
 package application;
 	
+import java.util.ArrayList;
 import java.util.stream.IntStream;
 
 import javafx.application.Application;
@@ -25,8 +26,16 @@ public class test2 extends Application {
 	    data.add(new Case("case 1"));
 	    data.add(new Case("case 2"));
 	    data.add(new Case("case 4"));
-	    FilteredList<Case> filteredData = new FilteredList<>(data, s -> true);
-
+	    ObservableList<String> datas = FXCollections.observableArrayList();
+	    datas.add("case 1");
+	    datas.add("case 2");
+	    datas.add("case 3");
+	    datas.add("case 4");
+	    datas.add("part 3 act 1");
+	    datas.add("part 5 act 3");
+	    datas.add("part 5 act 1");
+	    FilteredList<String> filteredData = new FilteredList<>(datas, s -> true);
+	    
 	    TextField filterInput = new TextField();
 	    filterInput.textProperty().addListener(obs->{
 	        String filter = filterInput.getText(); 
@@ -34,12 +43,15 @@ public class test2 extends Application {
 	            filteredData.setPredicate(s -> true);
 	        }
 	        else {
-	            filteredData.setPredicate(s -> s.getTitle().contains(filter));
+	            filteredData.setPredicate(s -> s.contains(filter));
 	        }
 	    });
-
-
-	    BorderPane content = new BorderPane(new ListView<>(filteredData));
+	    ListView<String> lview = new ListView<>(filteredData);
+	    lview.getSelectionModel().selectedItemProperty().addListener(ov -> {
+	    	// add logic to display case attributes here
+	    });
+	    
+	    BorderPane content = new BorderPane(lview);
 	    content.setBottom(filterInput);
 
 	    Scene scene = new Scene(content, 500, 500);
