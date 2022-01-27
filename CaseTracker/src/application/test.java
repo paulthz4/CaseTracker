@@ -36,10 +36,6 @@ public class test extends Application {
 			Label activeCase = new Label("");
 			vbox.getChildren().addAll(new Label("New Case:"), field, newcasebtn, summary, activeCaseLabel, activeCase);
 
-			// create ListView
-			ListView<String> lview = new ListView<>();
-			lview.setPrefSize(20, 110);
-
 			// add search bar above list view
 			ObservableList<String> itemsTemp = FXCollections.observableArrayList(titleList);
 			// find a way to declare the ListView to have global scope and
@@ -52,6 +48,11 @@ public class test extends Application {
 				} else
 					data.setPredicate(s -> s.contains(filter));
 			});
+
+			// create ListView
+			ListView<String> lview = new ListView<>(data);
+			lview.setPrefSize(20, 110);
+
 			// TODO: make search bar retrieve current case
 			// pane for the ListView
 			VBox paneforListView = new VBox(10);
@@ -65,11 +66,11 @@ public class test extends Application {
 					list.add(new Case(field.getText()));
 					titleList.add(field.getText());
 				}
-				 System.out.println(list.toString());
+				System.out.println(list.toString());
 				// adds the case titles to the ListView
 				// System.out.println(titleList.toString());
 				lview.getItems().clear();
-				lview.setItems(FXCollections.observableArrayList(titleList));
+//				lview.setItems(FXCollections.observableArrayList(titleList));
 				field.setText("");
 			});
 
