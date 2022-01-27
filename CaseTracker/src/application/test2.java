@@ -10,8 +10,10 @@ import javafx.collections.transformation.FilteredList;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 
 /* TEST CLASS IN TestApp 
  * code base on https://stackoverflow.com/questions/42628472/javafx-search-in-listview
@@ -36,6 +38,8 @@ public class test2 extends Application {
 	    datas.add("part 5 act 1");
 	    FilteredList<String> filteredData = new FilteredList<>(datas, s -> true);
 	    
+	    TextArea tarea = new TextArea();
+	    
 	    TextField filterInput = new TextField();
 	    filterInput.textProperty().addListener(obs->{
 	        String filter = filterInput.getText(); 
@@ -49,10 +53,17 @@ public class test2 extends Application {
 	    ListView<String> lview = new ListView<>(filteredData);
 	    lview.getSelectionModel().selectedItemProperty().addListener(ov -> {
 	    	// add logic to display case attributes here
+	    	String str = ov.toString().split("value:")[1];
+	    	tarea.setText("you clicked on " + str.substring(0, str.length()-1));
 	    });
 	    
-	    BorderPane content = new BorderPane(lview);
-	    content.setBottom(filterInput);
+	    tarea.setEditable(true);
+		tarea.setPrefColumnCount(5);
+		tarea.setPrefRowCount(8);
+		tarea.setWrapText(true);
+	    VBox content = new VBox(filterInput, lview,tarea);
+//	    content.setBottom(filterInput);
+//	    content.setCenter(tarea);
 
 	    Scene scene = new Scene(content, 500, 500);
 	    primaryStage.setScene(scene);
