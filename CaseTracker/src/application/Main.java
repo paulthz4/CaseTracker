@@ -73,16 +73,6 @@ public class Main extends Application {
 				for (Case i : list) {
 					summaryStr += i.toString() + "\n";
 					totalTime += i.getTotalTimeOnly();
-//					if (tarea.getText().contains("(")) {
-//						String[] a = i.getTitle().split("\\(", 0);
-//						// TODO: check if the hashmap already contains the key in it (use contains
-//						// method)
-//						if (!map.containsKey(a[1].substring(a[1].length() - 1)))
-//							map.put(a[1].substring(0, a[1].length() - 1), i.getTotalTimeOnly());
-//						else
-//							map.replace(a[1].substring(0, a[1].length() - 1),
-//									map.get(a[1].substring(0, a[1].length() - 1)) + i.getTotalTimeOnly());
-//					}
 				}
 //				System.out.println(map.toString());
 				if (totalTime == 0)
