@@ -22,7 +22,7 @@ public class test extends Application {
 	private ArrayList<String> titleList = new ArrayList<>();
 	private boolean free = true;
 	private String summaryStr = "";
-
+	private ObservableList<String> itemsTemp = FXCollections.observableArrayList(titleList);
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -37,7 +37,7 @@ public class test extends Application {
 			vbox.getChildren().addAll(new Label("New Case:"), field, newcasebtn, summary, activeCaseLabel, activeCase);
 
 			// add search bar above list view
-			ObservableList<String> itemsTemp = FXCollections.observableArrayList(titleList);
+			
 			// find a way to declare the ListView to have global scope and
 			FilteredList<String> data = new FilteredList<>(itemsTemp, s -> true);
 			TextField searchBar = new TextField();
@@ -62,14 +62,17 @@ public class test extends Application {
 			// register and handle 'new case' button
 			newcasebtn.setOnAction(e -> {
 				// make sure not to make duplicates
-				if (!titleList.contains(field.getText())) {
+				if (!itemsTemp.contains(field.getText())) {
 					list.add(new Case(field.getText()));
 					titleList.add(field.getText());
+					itemsTemp.add(field.getText());
 				}
 				System.out.println(list.toString());
 				// adds the case titles to the ListView
+				//add items to the obsevational list
+				
 				// System.out.println(titleList.toString());
-				lview.getItems().clear();
+//				lview.getItems().clear();
 //				lview.setItems(FXCollections.observableArrayList(titleList));
 				field.setText("");
 			});
@@ -112,20 +115,20 @@ public class test extends Application {
 			// add listener to ListView
 			lview.getSelectionModel().selectedItemProperty().addListener(ov -> {
 				int i = 0;
-				for (String s : titleList) {
+				for (String s : itemsTemp) {
 					if (s == lview.getSelectionModel().getSelectedItem())
-						i = titleList.indexOf(s);
+						i = itemsTemp.indexOf(s);
 				}
 				// creates temp case
 				Case temp = list.get(i);
 				// gets the description about the case
-				if (list.size() > 0) {
+				if (list.size() > 0) {			// pretty sure can remove this check as nothing will be selected with nothing in the list
 
 					tarea.setText(temp.toString());
 
 					// shows the 'start' and 'stop' buttons
 					casebtns.getChildren().clear();
-					casebtns.getChildren().addAll(list.get(i).getStartBtn(), list.get(i).getStopBtn(),
+					casebtns.getChildren().addAll(temp.getStartBtn(), list.get(i).getStopBtn(),
 							list.get(i).getRefreshBtn(), list.get(i).getClearCaseBtn());
 
 					temp.getStartBtn().setOnAction(e -> {
