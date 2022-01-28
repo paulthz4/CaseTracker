@@ -19,7 +19,6 @@ import javafx.stage.Stage;
 
 public class test extends Application {
 	private ArrayList<Case> list = new ArrayList<>();
-//	private ArrayList<String> titleList = new ArrayList<>();
 	private boolean free = true;
 	private String summaryStr = "";
 	private ObservableList<String> itemsTemp = FXCollections.observableArrayList();
@@ -53,7 +52,6 @@ public class test extends Application {
 			ListView<String> lview = new ListView<>(data);
 			lview.setPrefSize(20, 110);
 
-			// TODO: make search bar retrieve current case
 			// pane for the ListView
 			VBox paneforListView = new VBox(10);
 			paneforListView.setPadding(new Insets(1, 10, 10, 10));
@@ -64,16 +62,9 @@ public class test extends Application {
 				// make sure not to make duplicates
 				if (!itemsTemp.contains(field.getText()) && field.getText() != "") {
 					list.add(new Case(field.getText()));
-//					titleList.add(field.getText());
 					itemsTemp.add(field.getText());
 				}
 				System.out.println(list.toString());
-				// adds the case titles to the ListView
-				//add items to the obsevational list
-				
-				// System.out.println(titleList.toString());
-//				lview.getItems().clear();
-//				lview.setItems(FXCollections.observableArrayList(titleList));
 				field.setText("");
 			});
 
@@ -163,9 +154,6 @@ public class test extends Application {
 						if (itemsTemp.size() > 1) {
 							itemsTemp.remove(index);
 							list.remove(index);
-//							lview.getSelectionModel().clearAndSelect(1);
-							//lview.getItems().remove(index);
-//							lview.setItems(itemsTemp);
 						} else if (itemsTemp.size() == 1) {
 							itemsTemp.clear();
 							list.clear();
