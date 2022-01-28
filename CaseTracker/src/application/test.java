@@ -19,10 +19,10 @@ import javafx.stage.Stage;
 
 public class test extends Application {
 	private ArrayList<Case> list = new ArrayList<>();
-	private ArrayList<String> titleList = new ArrayList<>();
+//	private ArrayList<String> titleList = new ArrayList<>();
 	private boolean free = true;
 	private String summaryStr = "";
-	private ObservableList<String> itemsTemp = FXCollections.observableArrayList(titleList);
+	private ObservableList<String> itemsTemp = FXCollections.observableArrayList();
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -62,9 +62,9 @@ public class test extends Application {
 			// register and handle 'new case' button
 			newcasebtn.setOnAction(e -> {
 				// make sure not to make duplicates
-				if (!itemsTemp.contains(field.getText())) {
+				if (!itemsTemp.contains(field.getText()) && field.getText() != "") {
 					list.add(new Case(field.getText()));
-					titleList.add(field.getText());
+//					titleList.add(field.getText());
 					itemsTemp.add(field.getText());
 				}
 				System.out.println(list.toString());
@@ -159,15 +159,15 @@ public class test extends Application {
 
 					temp.getClearCaseBtn().setOnAction(e -> {
 						free = true;
-						int index = titleList.indexOf(lview.getSelectionModel().getSelectedItem());
-						if (titleList.size() > 1) {
-							titleList.remove(index);
+						int index = itemsTemp.indexOf(lview.getSelectionModel().getSelectedItem());
+						if (itemsTemp.size() > 1) {
+							itemsTemp.remove(index);
 							list.remove(index);
 							lview.getSelectionModel().clearAndSelect(1);
 							lview.getItems().remove(index);
 //							lview.setItems(itemsTemp);
-						} else if (titleList.size() == 1) {
-							titleList.clear();
+						} else if (itemsTemp.size() == 1) {
+							itemsTemp.clear();
 							list.clear();
 							lview.getSelectionModel().clearSelection();
 							lview.setItems(itemsTemp);
