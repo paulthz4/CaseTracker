@@ -22,38 +22,48 @@ public class Main extends Application {
 	private ArrayList<String> titleList = new ArrayList<>();
 	private boolean free = true;
 	private String summaryStr = "";
-//	private HashMap<String, Long> map = new HashMap<>();
-
+	private ObservableList<String> items = FXCollections.observableArrayList();
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 			// pane for creating the cases
 			VBox vbox = new VBox(15);
 			vbox.setPadding(new Insets(15, 15, 15, 15));
+			
 			TextField field = new TextField();
 			Button newcasebtn = new Button("New Case");
 			Button summary = new Button("Summary");
 			Label activeCaseLabel = new Label("Active case: ");
 			Label activeCase = new Label("");
+			
 			vbox.getChildren().addAll(new Label("New Case:"), field, newcasebtn, summary, activeCaseLabel, activeCase);
 
 			// create ListView
-			ListView<String> lview = new ListView<>();
+			FilteredList<String> data = new FilteredList<>(items, s -> true);
+			TextField searchBar = new TextField();
+			searchBar.textProperty().addListener(obs -> {
+				String filter = searchBar.getText();
+				if (filter == null || filter.length() == 0) {
+					data.setPredicate(s -> true);
+				} else
+					data.setPredicate(s -> s.contains(filter));
+			});
+			ListView<String> lview = new ListView<>(data);
 			lview.setPrefSize(20, 110);
+			
+			VBox paneforListView = new VBox(10);
+			paneforListView.setPadding(new Insets(1, 10, 10, 10));
+			paneforListView.getChildren().addAll(searchBar,  lview);
 
 			// register and handle 'new case' button
 			newcasebtn.setOnAction(e -> {
 				// make sure not to make duplicates
-				if (!titleList.contains(field.getText())) {
+				if (!items.contains(field.getText()) && field.getText() != "") {
 					list.add(new Case(field.getText()));
-					titleList.add(field.getText());
+					items.add(field.getText());
 				}
-//				 System.out.println(list.toString());
-				// adds the case titles to the ListView
-				ObservableList<String> items = FXCollections.observableArrayList(titleList);
-				// System.out.println(titleList.toString());
-				lview.getItems().clear();
-				lview.setItems(items);
+				System.out.println(list.toString());
 				field.setText("");
 			});
 
@@ -91,32 +101,21 @@ public class Main extends Application {
 			});
 
 			// add search bar above list view
-			ObservableList<String> itemsTemp = FXCollections.observableArrayList(titleList);
+//			ObservableList<String> itemsTemp = FXCollections.observableArrayList(titleList);
 			// find a way to declare the ListView to have global scope and
-			FilteredList<String> data = new FilteredList<>(itemsTemp, s -> true);
-			TextField searchBar = new TextField();
-			searchBar.textProperty().addListener(obs -> {
-				String filter = searchBar.getText();
-				if (filter == null || filter.length() == 0) {
-					data.setPredicate(s -> true);
-				} else
-					data.setPredicate(s -> s.contains(filter));
-			});
+			
 			// TODO: make search bar retrieve current case
 			// pane for the ListView
-			VBox paneforListView = new VBox(10);
-			paneforListView.setPadding(new Insets(1, 10, 10, 10));
-			paneforListView.getChildren().addAll( lview);
-
+			
 			// pane for case button "start", "stop", and 'clear case' btns
 			HBox casebtns = new HBox(15);
 
 			// add listener to ListView
 			lview.getSelectionModel().selectedItemProperty().addListener(ov -> {
 				int i = 0;
-				for (String s : titleList) {
+				for (String s : items) {
 					if (s == lview.getSelectionModel().getSelectedItem())
-						i = titleList.indexOf(s);
+						i = items.indexOf(s);
 				}
 				// creates temp case
 				Case temp = list.get(i);
@@ -160,19 +159,19 @@ public class Main extends Application {
 
 					temp.getClearCaseBtn().setOnAction(e -> {
 						free = true;
-						int index = titleList.indexOf(lview.getSelectionModel().getSelectedItem());
-						if (titleList.size() > 1) {
-							titleList.remove(index);
+						int index = items.indexOf(lview.getSelectionModel().getSelectedItem());
+						if (items.size() > 1) {
+							items.remove(index);
 							list.remove(index);
-							lview.getSelectionModel().clearAndSelect(1);
-							lview.getItems().remove(index);
-							ObservableList<String> items = FXCollections.observableArrayList(titleList);
-							lview.setItems(items);
-						} else if (titleList.size() == 1) {
-							titleList.clear();
+//							lview.getSelectionModel().clearAndSelect(1);
+//							lview.getItems().remove(index);
+//							ObservableList<String> items = FXCollections.observableArrayList(titleList);
+//							lview.setItems(items);
+						} else if (items.size() == 1) {
+							items.clear();
 							list.clear();
 							lview.getSelectionModel().clearSelection();
-							ObservableList<String> items = FXCollections.observableArrayList(titleList);
+//							ObservableList<String> items = FXCollections.observableArrayList(titleList);
 							lview.setItems(items);
 						}
 						tarea.setText(" ");
@@ -191,7 +190,7 @@ public class Main extends Application {
 			root.setTop(paneforListView);
 			root.setBottom(casebtns);
 
-			Scene scene = new Scene(root, 430, 400);
+			Scene scene = new Scene(root, 450, 450);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
