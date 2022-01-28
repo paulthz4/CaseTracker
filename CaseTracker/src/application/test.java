@@ -163,8 +163,8 @@ public class test extends Application {
 						if (itemsTemp.size() > 1) {
 							itemsTemp.remove(index);
 							list.remove(index);
-							lview.getSelectionModel().clearAndSelect(1);
-							lview.getItems().remove(index);
+//							lview.getSelectionModel().clearAndSelect(1);
+							//lview.getItems().remove(index);
 //							lview.setItems(itemsTemp);
 						} else if (itemsTemp.size() == 1) {
 							itemsTemp.clear();
