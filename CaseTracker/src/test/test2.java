@@ -1,5 +1,5 @@
-package application;
-	
+package test;
+import application.Case;
 import java.util.ArrayList;
 import java.util.stream.IntStream;
 
