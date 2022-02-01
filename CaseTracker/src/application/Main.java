@@ -19,7 +19,6 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 	private ArrayList<Case> list = new ArrayList<>();
-	private ArrayList<String> titleList = new ArrayList<>();
 	private boolean free = true;
 	private String summaryStr = "";
 	private ObservableList<String> items = FXCollections.observableArrayList();
