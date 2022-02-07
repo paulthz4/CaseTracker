@@ -99,13 +99,6 @@ public class Main extends Application {
 				tarea.setText(summaryStr + "Total Time for all is " + s);
 			});
 
-			// add search bar above list view
-//			ObservableList<String> itemsTemp = FXCollections.observableArrayList(titleList);
-			// find a way to declare the ListView to have global scope and
-			
-			// TODO: make search bar retrieve current case
-			// pane for the ListView
-			
 			// pane for case button "start", "stop", and 'clear case' btns
 			HBox casebtns = new HBox(15);
 
@@ -162,15 +155,10 @@ public class Main extends Application {
 						if (items.size() > 1) {
 							items.remove(index);
 							list.remove(index);
-//							lview.getSelectionModel().clearAndSelect(1);
-//							lview.getItems().remove(index);
-//							ObservableList<String> items = FXCollections.observableArrayList(titleList);
-//							lview.setItems(items);
 						} else if (items.size() == 1) {
 							items.clear();
 							list.clear();
 							lview.getSelectionModel().clearSelection();
-//							ObservableList<String> items = FXCollections.observableArrayList(titleList);
 							lview.setItems(items);
 						}
 						tarea.setText(" ");
