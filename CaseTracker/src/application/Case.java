@@ -121,8 +121,7 @@ public class Case {
 	@Override
 	public String toString() {
 		String str = this.getTitle() + "\n Date created: " + this.getDateTime()
-		+ "\n Time worked: " + this.getTimeWorked() + "\n Currently working: "
-		+ this.isActive() + "\n Total Time: " + this.getTotalTime() + "\n";
+		+ "\n Time worked: " + this.getTimeWorked() + "\n Total Time: " + this.getTotalTime() + "\n";
 		return str;
 	}
 }
