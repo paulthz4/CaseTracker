@@ -144,8 +144,6 @@ public class Main extends Application {
 					});
 
 					temp.getRefreshBtn().setOnAction(e -> {
-						// set condition to check if free to set active and then refresh
-//						if( temp.getTitle() == activeCase.getText())
 							tarea.setText(temp.toString());
 					});
 

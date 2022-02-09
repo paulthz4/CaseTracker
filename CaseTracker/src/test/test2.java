@@ -1,8 +1,5 @@
 package test;
 import application.Case;
-import java.util.ArrayList;
-import java.util.stream.IntStream;
-
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,12 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-
-/* TEST CLASS IN TestApp 
- * code base on https://stackoverflow.com/questions/42628472/javafx-search-in-listview
- *   DELETE PROJECT WHEN DONE */
 
 public class test2 extends Application {
 	@Override
