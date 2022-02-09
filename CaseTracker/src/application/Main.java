@@ -126,7 +126,7 @@ public class Main extends Application {
 							temp.setActive(true);
 							free = false;
 							temp.setStartTime();
-							temp.a += 1;
+							//temp.a += 1;
 							activeCase.setText(temp.getTitle());
 						}
 					});
@@ -136,7 +136,7 @@ public class Main extends Application {
 							temp.setActive(false);
 							free = true;
 							temp.setStopTime();
-							temp.a += 1;
+							//temp.a += 1;
 							activeCase.setText("");
 							tarea.setText(temp.toString());
 						}
