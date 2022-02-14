@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -65,7 +66,18 @@ public class Main extends Application {
 				System.out.println(list.toString());
 				field.setText("");
 			});
-
+			
+			field.setOnKeyReleased(e->{
+				if(e.getCode() == KeyCode.ENTER) {
+					System.out.println(e.getText());
+					if(!items.contains(field.getText()) && field.getText() != "") {
+						list.add(new Case(field.getText()));
+						items.add(field.getText());
+					}
+					field.setText("");
+					System.out.println(list.toString());
+				}
+			});
 			// displays the case times
 			TextArea tarea = new TextArea();
 			tarea.setEditable(true);
