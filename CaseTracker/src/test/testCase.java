@@ -4,11 +4,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 import application.Case;
+import application.Main;
 class testCase {
+	String b = "case A";
 	Case a = new Case("case A");
+	Main main = new Main();
 	@Test
 	void test() {
-		assertNotEquals(a.getTitle(), "case A");
+		assertEquals(a.getTitle(),"case A");
 	}
 
 }
