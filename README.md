@@ -7,7 +7,7 @@ Desktop application developed to track tasks using JavaFX. This application is m
 
 You can create as many tasks as you want with no dupilcates. Each task contains its date and time when it was created, as well as the time it has been worked on and is added the list of tasks, the list view. Each task is stored in MongoDB and can be retrieved.
 
-##### Adding Tasks
+#### Adding Tasks
 Set the title of your new task in the text field under the label `New Task:` then click the `New Task` button. You will see the task in the list view. Click the `Summary` button to see all the tasks you've created in the left panel. At the bottom of the panel you will see the total time you've been working. 
 
 #### Removing Tasks
