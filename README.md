@@ -1,6 +1,7 @@
 # CaseTracker
 
-https://user-images.githubusercontent.com/43190631/144690115-0ffa4538-0824-436e-b57e-f40f4219aa88.mp4
+
+https://user-images.githubusercontent.com/43190631/167220198-64588d7e-578c-42e4-9d97-31e081bcba7a.mp4
 
 ## Project Description
 Desktop application developed to track tasks using JavaFX. This application is meant to aid productivity and help with time management. To gain insight on the data stored, visit https://github.com/paulthz4/TaskTrackerWeb.
